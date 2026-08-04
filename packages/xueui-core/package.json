@@ -1,0 +1,28 @@
+{
+  "name": "@xueui/core",
+  "version": "0.1.0",
+  "description": "Framework-neutral design tokens and themes for XueUI.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuewill/xueui.git",
+    "directory": "packages/xueui-core"
+  },
+  "homepage": "https://github.com/xuewill/xueui#readme",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./tokens.css": "./src/tokens.css",
+    "./theme.css": "./src/theme.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}

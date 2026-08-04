@@ -1,0 +1,19 @@
+{
+  "name": "xueui-svelte-consumer-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@xueui/core": "0.1.0",
+    "@xueui/svelte": "0.2.0",
+    "svelte": "^5.56.8"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.5"
+  }
+}

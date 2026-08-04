@@ -1,0 +1,49 @@
+{
+  "name": "@xueui/svelte",
+  "version": "0.2.0",
+  "description": "Svelte 5 components for XueUI.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xuewill/xueui.git",
+    "directory": "packages/xueui-svelte"
+  },
+  "homepage": "https://github.com/xuewill/xueui#readme",
+  "type": "module",
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "VERSIONING.md"
+  ],
+  "scripts": {
+    "build": "svelte-package",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@lucide/svelte": "^1.28.0",
+    "@xueui/core": "0.1.0"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@sveltejs/package": "^2.5.8",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
+    "svelte": "^5.56.8",
+    "typescript": "^6.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}
