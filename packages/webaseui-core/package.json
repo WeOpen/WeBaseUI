@@ -1,0 +1,28 @@
+{
+  "name": "@webaseui/core",
+  "version": "0.1.0",
+  "description": "Framework-neutral design tokens and themes for WeBaseUI.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WeOpen/WeBaseUI.git",
+    "directory": "packages/webaseui-core"
+  },
+  "homepage": "https://github.com/WeOpen/WeBaseUI#readme",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    "./tokens.css": "./src/tokens.css",
+    "./theme.css": "./src/theme.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT"
+}
