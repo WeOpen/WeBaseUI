@@ -26,7 +26,7 @@ npm install @webaseui/core @webaseui/svelte
 </WeBaseCard>
 ```
 
-The packages have not been published to npm yet. Until the first release, use this repository as the source of truth and run the local consumer fixture before publishing.
+The packages are publicly available from npm as [`@webaseui/core`](https://www.npmjs.com/package/@webaseui/core) and [`@webaseui/svelte`](https://www.npmjs.com/package/@webaseui/svelte). The repository consumer fixture remains a release gate for verifying packed artifacts before each publication.
 
 All public component and Props exports use the `WeBase*` prefix. Public design tokens use the `--webase-*` namespace.
 
