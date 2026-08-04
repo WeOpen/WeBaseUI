@@ -50,7 +50,7 @@ The canonical component catalogue now lives in `apps/docs` and consumes the same
 npm run dev --workspace @webaseui/docs
 ```
 
-Its production build is part of `npm run check`, so documentation examples cannot drift into code that no longer compiles. The `xue` site remains an independent registry consumer and deployment proof.
+Its production build is part of `npm run check`, so documentation examples cannot drift into code that no longer compiles. The production portfolio remains an independent registry consumer and deployment proof.
 
 For a user-facing change, create a Changeset:
 
