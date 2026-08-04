@@ -1,13 +1,13 @@
 {
-  "name": "@xueui/svelte",
+  "name": "@webaseui/svelte",
   "version": "0.2.0",
-  "description": "Svelte 5 components for XueUI.",
+  "description": "Svelte 5 components for WeBaseUI.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xuewill/xueui.git",
-    "directory": "packages/xueui-svelte"
+    "url": "git+https://github.com/WeOpen/WeBaseUI.git",
+    "directory": "packages/webaseui-svelte"
   },
-  "homepage": "https://github.com/xuewill/xueui#readme",
+  "homepage": "https://github.com/WeOpen/WeBaseUI#readme",
   "type": "module",
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@lucide/svelte": "^1.28.0",
-    "@xueui/core": "0.1.0"
+    "@webaseui/core": "0.1.0"
   },
   "peerDependencies": {
     "svelte": "^5.0.0"

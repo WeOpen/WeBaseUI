@@ -1,32 +1,34 @@
-# XueUI
+# WeBaseUI
 
-XueUI is an editorial design system built around calm typography, paper-like materials, seal-inspired symbols, and restrained motion. The component implementation currently targets Svelte 5; its tokens and themes are framework-neutral so a React adapter can be added without redesigning the visual language.
+WeBaseUI is an editorial design system built around calm typography, paper-like materials, seal-inspired symbols, and restrained motion. The component implementation currently targets Svelte 5; its tokens and themes are framework-neutral so a React adapter can be added without redesigning the visual language.
 
 ## Packages
 
-- `@xueui/core` — CSS design tokens and theme primitives.
-- `@xueui/svelte` — 26 typed Svelte 5 components.
+- `@webaseui/core` — CSS design tokens and theme primitives.
+- `@webaseui/svelte` — 26 typed Svelte 5 components.
 
 ## Install
 
 ```sh
-npm install @xueui/core @xueui/svelte
+npm install @webaseui/core @webaseui/svelte
 ```
 
 ```svelte
 <script lang="ts">
-  import '@xueui/core/tokens.css';
-  import '@xueui/core/theme.css';
-  import { XueButton, XueCard } from '@xueui/svelte';
+  import '@webaseui/core/tokens.css';
+  import '@webaseui/core/theme.css';
+  import { XueButton, XueCard } from '@webaseui/svelte';
 </script>
 
 <XueCard>
-  <h2>XueUI</h2>
+  <h2>WeBaseUI</h2>
   <XueButton>Continue</XueButton>
 </XueCard>
 ```
 
 The packages have not been published to npm yet. Until the first release, use this repository as the source of truth and run the local consumer fixture before publishing.
+
+The current component exports retain their established `Xue*` prefix during the repository and package-scope migration. A component-prefix change will be handled separately with aliases and a documented deprecation window so existing consumers are not broken by the infrastructure move.
 
 ## Development
 
@@ -48,7 +50,7 @@ npm run changeset
 
 ## Architecture
 
-The framework-neutral layer lives in `@xueui/core`. Framework bindings consume that shared layer and own only component behavior and rendering. The planned React package will therefore be added as `@xueui/react` alongside `@xueui/svelte`, rather than translating Svelte components directly.
+The framework-neutral layer lives in `@webaseui/core`. Framework bindings consume that shared layer and own only component behavior and rendering. The planned React package will therefore be added as `@webaseui/react` alongside `@webaseui/svelte`, rather than translating Svelte components directly.
 
 ## License
 

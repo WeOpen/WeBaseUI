@@ -1,11 +1,11 @@
-# XueUI Svelte
+# WeBaseUI Svelte
 
-Svelte 5 components for XueUI.
+Svelte 5 components for WeBaseUI.
 
 ```svelte
 <script>
-  import '@xueui/core/theme.css';
-  import { XueButton } from '@xueui/svelte';
+  import '@webaseui/core/theme.css';
+  import { XueButton } from '@webaseui/svelte';
 </script>
 
 <XueButton label="Save" />
@@ -17,7 +17,7 @@ All components and their inferred Props types are exported from the package
 root. Deep imports are unsupported.
 
 ```ts
-import type { XueButtonProps, XueCardProps } from '@xueui/svelte';
+import type { XueButtonProps, XueCardProps } from '@webaseui/svelte';
 ```
 
 Every component forwards `class`, `style`, `data-*`, ARIA attributes, and native

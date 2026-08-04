@@ -1,5 +1,5 @@
 {
-  "name": "xueui",
+  "name": "webaseui",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,9 +10,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "build": "npm run build --workspace @xueui/svelte",
-    "check": "npm run build && node scripts/check-xueui-packages.mjs",
-    "check:consumer": "npm run build && node scripts/test-xueui-consumer.mjs",
+    "build": "npm run build --workspace @webaseui/svelte",
+    "check": "npm run build && node scripts/check-webaseui-packages.mjs",
+    "check:consumer": "npm run build && node scripts/test-webaseui-consumer.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "npm run check && npm run check:consumer && changeset publish"

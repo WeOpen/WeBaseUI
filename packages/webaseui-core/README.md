@@ -1,9 +1,9 @@
-# XueUI Core
+# WeBaseUI Core
 
-Framework-neutral design tokens and light/dark themes for XueUI.
+Framework-neutral design tokens and light/dark themes for WeBaseUI.
 
 ```css
-@import '@xueui/core/theme.css';
+@import '@webaseui/core/theme.css';
 ```
 
 Set `data-theme="dark"` on the document root to select the dark theme. Public

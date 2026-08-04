@@ -1,6 +1,6 @@
-# XueUI Versioning and Deprecation Policy
+# WeBaseUI Versioning and Deprecation Policy
 
-XueUI packages follow Semantic Versioning. During the pre-1.0 period, the
+WeBaseUI packages follow Semantic Versioning. During the pre-1.0 period, the
 project uses a stricter policy than SemVer requires so consumers can adopt it
 without surprise.
 
@@ -13,7 +13,7 @@ without surprise.
 - Before 1.0, an unavoidable breaking change may ship in a minor release only
   when the changelog labels it clearly and provides a migration path.
 
-`@xueui/core` and framework adapters may version independently. A framework
+`@webaseui/core` and framework adapters may version independently. A framework
 adapter declares the compatible core range in its package manifest.
 
 ## Public contracts

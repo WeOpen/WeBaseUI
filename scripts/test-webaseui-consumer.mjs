@@ -4,8 +4,8 @@ import os from 'node:os';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
-const fixture = path.join(root, 'examples/xueui-svelte-consumer');
-const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'xueui-consumer-'));
+const fixture = path.join(root, 'examples/webaseui-svelte-consumer');
+const temporaryRoot = mkdtempSync(path.join(os.tmpdir(), 'webaseui-consumer-'));
 const app = path.join(temporaryRoot, 'app');
 const packs = path.join(temporaryRoot, 'packs');
 
@@ -35,23 +35,23 @@ function pack(workspace) {
 try {
   mkdirSync(packs);
   cpSync(fixture, app, { recursive: true });
-  const coreTarball = pack('@xueui/core');
-  const svelteTarball = pack('@xueui/svelte');
+  const coreTarball = pack('@webaseui/core');
+  const svelteTarball = pack('@webaseui/svelte');
   const manifestPath = path.join(app, 'package.json');
   const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-  manifest.dependencies['@xueui/core'] = `file:${coreTarball}`;
-  manifest.dependencies['@xueui/svelte'] = `file:${svelteTarball}`;
+  manifest.dependencies['@webaseui/core'] = `file:${coreTarball}`;
+  manifest.dependencies['@webaseui/svelte'] = `file:${svelteTarball}`;
   writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
   run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund'], app);
   run('npm', ['run', 'build'], app);
 
-  const installedPackage = realpathSync(path.join(app, 'node_modules/@xueui/svelte'));
+  const installedPackage = realpathSync(path.join(app, 'node_modules/@webaseui/svelte'));
   if (!installedPackage.startsWith(realpathSync(app))) {
     throw new Error(`consumer resolved a workspace link instead of its tarball: ${installedPackage}`);
   }
 
-  console.log('Validated XueUI from packed tarballs in an isolated Svelte consumer build.');
+  console.log('Validated WeBaseUI from packed tarballs in an isolated Svelte consumer build.');
 } finally {
   rmSync(temporaryRoot, { recursive: true, force: true });
 }

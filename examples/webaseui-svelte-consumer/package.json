@@ -1,5 +1,5 @@
 {
-  "name": "xueui-svelte-consumer-fixture",
+  "name": "webaseui-svelte-consumer-fixture",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,8 +7,8 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@xueui/core": "0.1.0",
-    "@xueui/svelte": "0.2.0",
+    "@webaseui/core": "0.1.0",
+    "@webaseui/svelte": "0.2.0",
     "svelte": "^5.56.8"
   },
   "devDependencies": {

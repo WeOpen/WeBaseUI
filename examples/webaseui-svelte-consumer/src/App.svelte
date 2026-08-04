@@ -1,7 +1,7 @@
 <script lang="ts">
-  import '@xueui/core/theme.css';
-  import { XueAlert, XueButton, XueCard } from '@xueui/svelte';
-  import type { XueButtonProps } from '@xueui/svelte';
+  import '@webaseui/core/theme.css';
+  import { XueAlert, XueButton, XueCard } from '@webaseui/svelte';
+  import type { XueButtonProps } from '@webaseui/svelte';
 
   const action = {
     label: 'Save specimen',
