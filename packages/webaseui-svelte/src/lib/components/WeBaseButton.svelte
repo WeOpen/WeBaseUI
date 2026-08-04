@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLButtonAttributes } from 'svelte/elements';
-  import XueIcon, { type XueIconName } from './XueIcon.svelte';
+  import WeBaseIcon, { type WeBaseIconName } from './WeBaseIcon.svelte';
 
   type Variant = 'ink' | 'outline' | 'quiet' | 'text';
   type Size = 'sm' | 'md';
@@ -12,7 +12,7 @@
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     loading?: boolean;
-    icon?: XueIconName;
+    icon?: WeBaseIconName;
     full?: boolean;
     onclick?: (event: MouseEvent) => void;
   }
@@ -22,9 +22,9 @@
 
 <button class={`ds-button ds-button-${variant} ds-button-${size} ${className}`} class:full {type} disabled={disabled || loading} aria-busy={loading} {onclick} {...rest}>
   {#if loading}
-    <XueIcon class="ds-button-spinner" name="loader-circle" size={15} strokeWidth={1.8} />
+    <WeBaseIcon class="ds-button-spinner" name="loader-circle" size={15} strokeWidth={1.8} />
   {:else if icon}
-    <XueIcon name={icon} size={15} strokeWidth={1.8} />
+    <WeBaseIcon name={icon} size={15} strokeWidth={1.8} />
   {/if}
   <span>{loading ? 'Working' : label}</span>
 </button>

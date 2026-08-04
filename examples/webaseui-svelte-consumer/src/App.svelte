@@ -1,25 +1,25 @@
 <script lang="ts">
   import '@webaseui/core/theme.css';
-  import { XueAlert, XueButton, XueCard } from '@webaseui/svelte';
-  import type { XueButtonProps } from '@webaseui/svelte';
+  import { WeBaseAlert, WeBaseButton, WeBaseCard } from '@webaseui/svelte';
+  import type { WeBaseButtonProps } from '@webaseui/svelte';
 
   const action = {
     label: 'Save specimen',
     variant: 'ink',
     'data-consumer': 'fixture'
-  } satisfies XueButtonProps;
+  } satisfies WeBaseButtonProps;
 </script>
 
 <main>
-  <XueAlert title="Tarball installed" message="The public package resolved without workspace links." />
-  <XueCard title="Consumer composition" data-surface="fixture">
+  <WeBaseAlert title="Tarball installed" message="The public package resolved without workspace links." />
+  <WeBaseCard title="Consumer composition" data-surface="fixture">
     <p>This body is supplied through the Svelte 5 children snippet.</p>
 
     {#snippet footer()}
       <small>Installed artifact / 0.2.0</small>
     {/snippet}
-  </XueCard>
-  <XueButton {...action} />
+  </WeBaseCard>
+  <WeBaseButton {...action} />
 </main>
 
 <style>

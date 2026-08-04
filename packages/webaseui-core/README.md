@@ -7,4 +7,4 @@ Framework-neutral design tokens and light/dark themes for WeBaseUI.
 ```
 
 Set `data-theme="dark"` on the document root to select the dark theme. Public
-custom properties use the `--xue-*` namespace.
+custom properties use the `--webase-*` namespace.

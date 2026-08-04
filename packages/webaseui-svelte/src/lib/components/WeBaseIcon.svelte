@@ -1,10 +1,10 @@
 <script module lang="ts">
   /*
     Declared in the module script so other components can import the union
-    (`import XueIcon, { type XueIconName } from './XueIcon.svelte'`). A type
+    (`import WeBaseIcon, { type WeBaseIconName } from './WeBaseIcon.svelte'`). A type
     exported from the instance script is not reachable by importers.
   */
-  export type XueIconName =
+  export type WeBaseIconName =
     | 'archive'
     | 'archive-x'
     | 'arrow-left'
@@ -36,7 +36,7 @@
   import type { SVGAttributes } from 'svelte/elements';
 
   interface Props extends Omit<SVGAttributes<SVGSVGElement>, 'children' | 'fill' | 'strokeWidth'> {
-    name: XueIconName;
+    name: WeBaseIconName;
     size?: number;
     strokeWidth?: number;
     fill?: string;
@@ -46,7 +46,7 @@
 
   let { name, size = 18, strokeWidth = 1.7, fill = 'none', class: className = '', ariaHidden = true, ...rest }: Props = $props();
 
-  const nodes: Record<XueIconName, IconNode> = {
+  const nodes: Record<WeBaseIconName, IconNode> = {
     'archive': [['rect', { width: '20', height: '5', x: '2', y: '3', rx: '1' }], ['path', { d: 'M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8' }], ['path', { d: 'M10 12h4' }]],
     'archive-x': [['rect', { width: '20', height: '5', x: '2', y: '3', rx: '1' }], ['path', { d: 'M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8' }], ['path', { d: 'm9.5 17 5-5' }], ['path', { d: 'm9.5 12 5 5' }]],
     'arrow-left': [['path', { d: 'm12 19-7-7 7-7' }], ['path', { d: 'M19 12H5' }]],

@@ -17,18 +17,18 @@ npm install @webaseui/core @webaseui/svelte
 <script lang="ts">
   import '@webaseui/core/tokens.css';
   import '@webaseui/core/theme.css';
-  import { XueButton, XueCard } from '@webaseui/svelte';
+  import { WeBaseButton, WeBaseCard } from '@webaseui/svelte';
 </script>
 
-<XueCard>
+<WeBaseCard>
   <h2>WeBaseUI</h2>
-  <XueButton>Continue</XueButton>
-</XueCard>
+  <WeBaseButton>Continue</WeBaseButton>
+</WeBaseCard>
 ```
 
 The packages have not been published to npm yet. Until the first release, use this repository as the source of truth and run the local consumer fixture before publishing.
 
-The current component exports retain their established `Xue*` prefix during the repository and package-scope migration. A component-prefix change will be handled separately with aliases and a documented deprecation window so existing consumers are not broken by the infrastructure move.
+All public component and Props exports use the `WeBase*` prefix. Public design tokens use the `--webase-*` namespace.
 
 ## Development
 

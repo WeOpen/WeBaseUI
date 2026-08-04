@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLDialogAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   interface Props extends Omit<HTMLDialogAttributes, 'children' | 'id' | 'open' | 'title'> { open?: boolean; title?: string; message?: string; id?: string; confirmLabel?: string; }
   const uid = $props.id();
@@ -38,7 +38,7 @@
   onclick={(event) => event.target === dialog && dialog.close()}
 >
   <div class="ds-dialog">
-    <button class="ds-dialog-close" type="button" aria-label="Close dialog" onclick={() => dialog?.close()}><XueIcon name="x" size={19} /></button>
+    <button class="ds-dialog-close" type="button" aria-label="Close dialog" onclick={() => dialog?.close()}><WeBaseIcon name="x" size={19} /></button>
     <p class="ds-dialog-kicker">Dialog / modal</p>
     <h3 id={`${id}-title`}>{title}</h3>
     <p id={`${id}-message`}>{message}</p>

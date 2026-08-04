@@ -2,7 +2,7 @@
   import type { HTMLAttributes } from 'svelte/elements';
   /*
     `variant`, not `tone`. Across the rest of the set `tone` means semantic status
-    (info / success / warning / error, as in XueAlert and XueToast). These three
+    (info / success / warning / error, as in WeBaseAlert and WeBaseToast). These three
     values are a catalogue taxonomy, so reusing `tone` here would overload one
     prop name with two unrelated meanings.
   */

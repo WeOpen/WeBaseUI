@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLLabelAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   interface Props extends Omit<HTMLLabelAttributes, 'children'> { label: string; checked?: boolean; disabled?: boolean; indeterminate?: boolean; description?: string; }
   let { label, checked = $bindable(false), disabled = false, indeterminate = false, description = '', class: className = '', ...rest }: Props = $props();
@@ -10,7 +10,7 @@
 
 <label class:disabled class={`ds-check ${className}`} {...rest}>
   <input bind:this={input} type="checkbox" bind:checked {disabled} />
-  <span class="ds-check-box" aria-hidden="true">{#if indeterminate}<XueIcon name="minus" size={13} strokeWidth={2} />{:else if checked}<XueIcon name="check" size={13} strokeWidth={2} />{/if}</span>
+  <span class="ds-check-box" aria-hidden="true">{#if indeterminate}<WeBaseIcon name="minus" size={13} strokeWidth={2} />{:else if checked}<WeBaseIcon name="check" size={13} strokeWidth={2} />{/if}</span>
   <span class="ds-check-copy"><span>{label}</span>{#if description}<small>{description}</small>{/if}</span>
 </label>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   interface Item { label: string; href?: string; }
   interface Props extends Omit<HTMLAttributes<HTMLElement>, 'children'> { items: Item[]; }
@@ -12,9 +12,9 @@
   <ol>
     {#each items as item, index (item.label)}
       <li>
-        {#if index > 0}<XueIcon name="chevron-right" size={13} />{/if}
+        {#if index > 0}<WeBaseIcon name="chevron-right" size={13} />{/if}
         {#if item.href && index < items.length - 1}
-          <a href={item.href}>{#if index === 0}<XueIcon name="house" size={14} />{/if}<span>{item.label}</span></a>
+          <a href={item.href}>{#if index === 0}<WeBaseIcon name="house" size={14} />{/if}<span>{item.label}</span></a>
         {:else}
           <span aria-current={index === items.length - 1 ? 'page' : undefined}>{item.label}</span>
         {/if}

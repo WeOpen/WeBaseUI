@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   interface Option {
     label: string;
@@ -137,7 +137,7 @@
     onkeydown={handleKeydown}
   >
     <span class="ds-select-value">{selectedOption()?.label ?? 'Select an option'}</span>
-    <XueIcon class="ds-select-chevron" name="chevron-down" size={18} strokeWidth={1.6} />
+    <WeBaseIcon class="ds-select-chevron" name="chevron-down" size={18} strokeWidth={1.6} />
   </button>
 
   <!-- The listbox stays mounted so the trigger's aria-controls resolves while collapsed. -->
@@ -157,7 +157,7 @@
       >
         <span>{option.label}</span>
         {#if value === option.value}
-          <XueIcon class="ds-select-check" name="check" size={16} strokeWidth={1.8} />
+          <WeBaseIcon class="ds-select-check" name="check" size={16} strokeWidth={1.8} />
         {/if}
       </button>
     {/each}

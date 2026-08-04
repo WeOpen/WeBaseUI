@@ -1,19 +1,19 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   interface Props extends Omit<HTMLAttributes<HTMLElement>, 'children' | 'onclick' | 'title'> { title?: string; message?: string; actionLabel?: string; onclick?: (event: MouseEvent) => void; children?: Snippet; actions?: Snippet; }
   let { title = 'No notes in this drawer', message = 'Start a new note or adjust the current filters.', actionLabel = 'Create note', onclick, children, actions, class: className = '', ...rest }: Props = $props();
 </script>
 
 <section class={`ds-empty-state ${className}`} {...rest}>
-  <span class="ds-empty-mark" aria-hidden="true"><XueIcon name="archive-x" size={26} strokeWidth={1.35} /></span>
+  <span class="ds-empty-mark" aria-hidden="true"><WeBaseIcon name="archive-x" size={26} strokeWidth={1.35} /></span>
   <div><p class="ds-empty-kicker">Empty / archive</p><h3>{title}</h3><div class="ds-empty-copy">{#if children}{@render children()}{:else}{message}{/if}</div></div>
   {#if actions}
     <div class="ds-empty-actions">{@render actions()}</div>
   {:else}
-    <button type="button" {onclick}><XueIcon name="plus" size={15} strokeWidth={1.8} />{actionLabel}</button>
+    <button type="button" {onclick}><WeBaseIcon name="plus" size={15} strokeWidth={1.8} />{actionLabel}</button>
   {/if}
 </section>
 

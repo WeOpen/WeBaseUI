@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   type Tone = 'success' | 'info' | 'error';
   interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'title'> { open?: boolean; title?: string; message?: string; tone?: Tone; duration?: number; }
@@ -31,9 +31,9 @@
       onfocusin={() => (held = true)}
       onfocusout={() => (held = false)}
     >
-      <span class="ds-toast-mark" aria-hidden="true">{#if tone === 'error'}<XueIcon name="circle-alert" size={15} strokeWidth={1.8} />{:else if tone === 'info'}<XueIcon name="info" size={15} strokeWidth={1.8} />{:else}<XueIcon name="circle-check" size={15} strokeWidth={1.8} />{/if}</span>
+      <span class="ds-toast-mark" aria-hidden="true">{#if tone === 'error'}<WeBaseIcon name="circle-alert" size={15} strokeWidth={1.8} />{:else if tone === 'info'}<WeBaseIcon name="info" size={15} strokeWidth={1.8} />{:else}<WeBaseIcon name="circle-check" size={15} strokeWidth={1.8} />{/if}</span>
       <span><strong>{title}</strong><small>{message}</small></span>
-      <button type="button" aria-label="Dismiss notification" onclick={() => (open = false)}><XueIcon name="x" size={17} /></button>
+      <button type="button" aria-label="Dismiss notification" onclick={() => (open = false)}><WeBaseIcon name="x" size={17} /></button>
     </aside>
   {/if}
 </div>

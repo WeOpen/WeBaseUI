@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   interface Item { title: string; content: string; }
   interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'id'> { items: Item[]; open?: number; id?: string; }
@@ -36,7 +36,7 @@
           onkeydown={(event) => handleKeydown(event, index)}
         >
           <span><small>{String(index + 1).padStart(2, '0')}</small>{item.title}</span>
-          <XueIcon name="chevron-down" size={18} strokeWidth={1.6} />
+          <WeBaseIcon name="chevron-down" size={18} strokeWidth={1.6} />
         </button>
       </h3>
       <!-- Panels stay mounted so each trigger's aria-controls resolves to a real element. -->

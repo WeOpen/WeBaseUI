@@ -22,7 +22,7 @@ The following are public API and require version review:
 
 - package-root exports and named Props types;
 - documented props, defaults, bindings, snippets, and root attribute behavior;
-- `--xue-*` CSS custom properties and theme selectors;
+- `--webase-*` CSS custom properties and theme selectors;
 - keyboard behavior, focus management, ARIA relationships, and live regions;
 - supported Svelte peer dependency ranges.
 

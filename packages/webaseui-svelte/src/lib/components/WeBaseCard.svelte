@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   type Variant = 'paper' | 'ink' | 'outline';
 
@@ -20,7 +20,7 @@
 </script>
 
 <article class={`ds-card ds-card-${variant} ${className}`} {...rest}>
-  <span class="ds-card-mark" aria-hidden="true"><XueIcon name="sparkles" size={18} strokeWidth={1.45} /></span>
+  <span class="ds-card-mark" aria-hidden="true"><WeBaseIcon name="sparkles" size={18} strokeWidth={1.45} /></span>
   <p class="ds-card-eyebrow">{eyebrow}</p>
   <h3>{title}</h3>
   <div class="ds-card-body">{#if children}{@render children()}{:else}{body}{/if}</div>
@@ -30,7 +30,7 @@
         {@render footer()}
       {:else}
         {#if meta}<span>{meta}</span>{/if}
-        {#if action}<button type="button">{action}<XueIcon name="arrow-up-right" size={14} /></button>{/if}
+        {#if action}<button type="button">{action}<WeBaseIcon name="arrow-up-right" size={14} /></button>{/if}
       {/if}
     </footer>
   {/if}

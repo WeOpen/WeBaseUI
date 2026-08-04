@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { HTMLButtonAttributes } from 'svelte/elements';
-  import XueIcon, { type XueIconName } from './XueIcon.svelte';
+  import WeBaseIcon, { type WeBaseIconName } from './WeBaseIcon.svelte';
 
   interface Props extends Omit<HTMLButtonAttributes, 'children' | 'disabled' | 'onclick'> {
     label: string;
-    icon?: XueIconName;
+    icon?: WeBaseIconName;
     pressed?: boolean;
     disabled?: boolean;
     onclick?: (event: MouseEvent) => void;
@@ -15,7 +15,7 @@
 
 <button class:pressed class={`ds-icon-button ${className}`} type="button" aria-label={label} aria-pressed={pressed} {disabled} {onclick} {...rest}>
   <!-- fill only reads on closed shapes like bookmark and heart; on stroke-only glyphs it is a no-op. -->
-  <XueIcon name={icon} size={18} fill={pressed ? 'currentColor' : 'none'} />
+  <WeBaseIcon name={icon} size={18} fill={pressed ? 'currentColor' : 'none'} />
 </button>
 
 <style>

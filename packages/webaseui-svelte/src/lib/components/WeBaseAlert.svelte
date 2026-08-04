@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { HTMLAttributes } from 'svelte/elements';
-  import XueIcon from './XueIcon.svelte';
+  import WeBaseIcon from './WeBaseIcon.svelte';
 
   type Tone = 'info' | 'success' | 'warning' | 'error';
 
@@ -22,13 +22,13 @@
   <aside class={`ds-alert ds-alert-${tone} ${className}`} role={tone === 'error' ? 'alert' : 'status'} {...rest}>
     <span class="ds-alert-icon" aria-hidden="true">
       {#if tone === 'success'}
-        <XueIcon name="circle-check" size={19} />
+        <WeBaseIcon name="circle-check" size={19} />
       {:else if tone === 'warning'}
-        <XueIcon name="triangle-alert" size={19} />
+        <WeBaseIcon name="triangle-alert" size={19} />
       {:else if tone === 'error'}
-        <XueIcon name="circle-alert" size={19} />
+        <WeBaseIcon name="circle-alert" size={19} />
       {:else}
-        <XueIcon name="info" size={19} />
+        <WeBaseIcon name="info" size={19} />
       {/if}
     </span>
     <span class="ds-alert-copy">
@@ -39,7 +39,7 @@
       <span class="ds-alert-actions">
         {#if actions}{@render actions()}{/if}
         {#if dismissible}
-          <button class="ds-alert-dismiss" type="button" aria-label="Dismiss alert" onclick={() => (open = false)}><XueIcon name="x" size={17} /></button>
+          <button class="ds-alert-dismiss" type="button" aria-label="Dismiss alert" onclick={() => (open = false)}><WeBaseIcon name="x" size={17} /></button>
         {/if}
       </span>
     {/if}
