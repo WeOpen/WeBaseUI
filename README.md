@@ -20,9 +20,9 @@ npm install @webaseui/core @webaseui/svelte
   import { WeBaseButton, WeBaseCard } from '@webaseui/svelte';
 </script>
 
-<WeBaseCard>
-  <h2>WeBaseUI</h2>
-  <WeBaseButton>Continue</WeBaseButton>
+<WeBaseCard title="WeBaseUI">
+  <p>Components are imported from the package root.</p>
+  <WeBaseButton label="Continue" />
 </WeBaseCard>
 ```
 
@@ -41,6 +41,16 @@ npm run check:consumer
 ```
 
 `npm run check` validates the generated package artifacts and public exports. `npm run check:consumer` packs both workspaces and builds an isolated Svelte app from the tarballs, catching errors that workspace links can hide.
+
+## Documentation app
+
+The canonical component catalogue now lives in `apps/docs` and consumes the same public package roots as downstream applications. Run it locally with:
+
+```sh
+npm run dev --workspace @webaseui/docs
+```
+
+Its production build is part of `npm run check`, so documentation examples cannot drift into code that no longer compiles. The `xue` site remains an independent registry consumer and deployment proof.
 
 For a user-facing change, create a Changeset:
 

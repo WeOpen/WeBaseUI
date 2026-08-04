@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "workspaces": [
+    "apps/*",
     "packages/*"
   ],
   "engines": {
@@ -11,7 +12,8 @@
   },
   "scripts": {
     "build": "npm run build --workspace @webaseui/svelte",
-    "check": "npm run build && node scripts/check-webaseui-packages.mjs",
+    "build:docs": "npm run build --workspace @webaseui/docs",
+    "check": "npm run build && npm run build:docs && node scripts/check-webaseui-packages.mjs",
     "check:consumer": "npm run build && node scripts/test-webaseui-consumer.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version",
