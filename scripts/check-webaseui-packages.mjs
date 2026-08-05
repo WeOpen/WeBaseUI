@@ -58,6 +58,10 @@ const tokenSource = readFileSync(
   path.join(root, 'packages/webaseui-core/src/tokens.css'),
   'utf8'
 );
+const tagSource = readFileSync(
+  path.join(root, 'packages/webaseui-svelte/src/lib/components/WeBaseTag.svelte'),
+  'utf8'
+);
 const publicComponents = [
   ...publicIndex.matchAll(/export \{ default as (WeBase[A-Za-z]+) \}/g)
 ].map((match) => match[1]);
@@ -105,6 +109,14 @@ invariant(publicComponents.length === 28, `expected 28 public components, found 
 for (const component of navigationPrimitives) {
   invariant(publicComponents.includes(component), `${component} must be exported from the package root`);
 }
+invariant(
+  tagSource.includes('.ds-tag-neutral { color: var(--ink-soft);'),
+  'WeBaseTag neutral text must use the accessible ink-soft token'
+);
+invariant(
+  /small \{[^}]*opacity:\s*1;/.test(tagSource),
+  'WeBaseTag counts must remain fully opaque for small-text contrast'
+);
 invariant(
   legacyBrandReferences.length === 0,
   `legacy brand naming remains in: ${legacyBrandReferences.join(', ')}`

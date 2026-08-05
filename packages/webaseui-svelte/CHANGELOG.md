@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+### Patch Changes
+
+- Improve WeBaseTag small-text contrast in light and dark themes.
+
 ## 0.3.1
 
 ### Patch Changes

@@ -180,5 +180,5 @@ import { WeBaseButton } from '@webaseui/svelte';`}</code></pre>
 
 <footer>
   <span>WeOpen / WeBaseUI</span>
-  <span>Core 0.1.0 · Svelte 0.3.0</span>
+  <span>Core 0.1.0 · Svelte 0.3.2</span>
 </footer>
