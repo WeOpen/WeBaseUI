@@ -10,10 +10,12 @@
     WeBaseIcon,
     WeBaseIconButton,
     WeBaseLoader,
+    WeBaseLink,
     WeBaseProgress,
     WeBaseRadio,
     WeBaseSectionHeader,
     WeBaseSwitch,
+    WeBaseTag,
     WeBaseTextarea,
     WeBaseTooltip
   } from '@webaseui/svelte';
@@ -23,10 +25,10 @@
     ['Breadcrumbs', 'Navigation'], ['Button', 'Action'], ['Card', 'Surface'],
     ['Check', 'Selection'], ['Dialog', 'Overlay'], ['Divider', 'Structure'],
     ['EmptyState', 'Content'], ['Field', 'Form'], ['Icon', 'Foundation'],
-    ['IconButton', 'Action'], ['Loader', 'Feedback'], ['Pagination', 'Navigation'],
+    ['IconButton', 'Action'], ['Link', 'Navigation'], ['Loader', 'Feedback'], ['Pagination', 'Navigation'],
     ['Progress', 'Feedback'], ['Radio', 'Selection'], ['SectionHeader', 'Structure'],
     ['Select', 'Form'], ['Skeleton', 'Feedback'], ['Slider', 'Form'],
-    ['Switch', 'Selection'], ['Tabs', 'Navigation'], ['Textarea', 'Form'],
+    ['Switch', 'Selection'], ['Tag', 'Navigation'], ['Tabs', 'Navigation'], ['Textarea', 'Form'],
     ['Toast', 'Feedback'], ['Tooltip', 'Overlay']
   ] as const;
 
@@ -75,7 +77,7 @@
 
 <main id="top">
   <section class="hero">
-    <p class="kicker">Public proof / 0.2</p>
+    <p class="kicker">Public proof / 0.3</p>
     <h1>Interfaces with<br /><em>a registered mark.</em></h1>
     <p class="hero-copy">A compact foundation of namespaced tokens and accessible Svelte 5 components, designed to travel between products without losing its character.</p>
     <div class="hero-actions">
@@ -83,7 +85,7 @@
       <a href="https://github.com/WeOpen/WeBaseUI">View source ↗</a>
     </div>
     <dl class="ledger">
-      <div><dt>Components</dt><dd>26</dd></div>
+      <div><dt>Components</dt><dd>28</dd></div>
       <div><dt>Framework</dt><dd>Svelte 5</dd></div>
       <div><dt>Tokens</dt><dd>--webase-*</dd></div>
       <div><dt>License</dt><dd>MIT</dd></div>
@@ -114,6 +116,8 @@
           <WeBaseButton label="Open archive" variant="outline" icon="arrow-up-right" />
           <WeBaseButton label="Add note" variant="quiet" icon="plus" />
           <WeBaseIconButton label="Bookmark" icon="bookmark" bind:pressed={subscribed} />
+          <WeBaseLink href="#install" label="Install" variant="action" />
+          <WeBaseTag href="#components" label="Navigation" count="02" />
           <WeBaseTooltip label="Details" text="Tooltips remain dismissible with Escape." />
         </div>
       </article>
@@ -176,5 +180,5 @@ import { WeBaseButton } from '@webaseui/svelte';`}</code></pre>
 
 <footer>
   <span>WeOpen / WeBaseUI</span>
-  <span>Core 0.1.0 · Svelte 0.2.0</span>
+  <span>Core 0.1.0 · Svelte 0.3.0</span>
 </footer>

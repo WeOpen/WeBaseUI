@@ -61,6 +61,7 @@ const tokenSource = readFileSync(
 const publicComponents = [
   ...publicIndex.matchAll(/export \{ default as (WeBase[A-Za-z]+) \}/g)
 ].map((match) => match[1]);
+const navigationPrimitives = ['WeBaseLink', 'WeBaseTag'];
 const brandFiles = [
   ...listSourceFiles('packages'),
   ...listSourceFiles('examples'),
@@ -96,7 +97,10 @@ invariant(svelteFiles.has('dist/index.js'), '@webaseui/svelte tarball is missing
 invariant(svelteFiles.has('dist/index.d.ts'), '@webaseui/svelte tarball is missing dist/index.d.ts');
 invariant(svelteFiles.has('CHANGELOG.md'), '@webaseui/svelte tarball is missing its changelog');
 invariant(svelteFiles.has('VERSIONING.md'), '@webaseui/svelte tarball is missing its versioning policy');
-invariant(publicComponents.length === 26, `expected 26 public components, found ${publicComponents.length}`);
+invariant(publicComponents.length === 28, `expected 28 public components, found ${publicComponents.length}`);
+for (const component of navigationPrimitives) {
+  invariant(publicComponents.includes(component), `${component} must be exported from the package root`);
+}
 invariant(
   legacyBrandReferences.length === 0,
   `legacy brand naming remains in: ${legacyBrandReferences.join(', ')}`
