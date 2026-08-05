@@ -15,6 +15,7 @@
     "build:docs": "npm run build --workspace @webaseui/docs",
     "check": "npm run build && npm run build:docs && node scripts/check-webaseui-packages.mjs",
     "check:consumer": "npm run build && node scripts/test-webaseui-consumer.mjs",
+    "deploy:docs": "npm run build:docs && wrangler pages deploy --branch=main",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "npm run check && npm run check:consumer && changeset publish"
@@ -25,11 +26,13 @@
     "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "svelte": "^5.56.8",
     "typescript": "^6.0.3",
-    "vite": "^8.1.5"
+    "vite": "^8.1.5",
+    "wrangler": "4.114.0"
   },
   "overrides": {
     "brace-expansion": "5.0.9",
-    "postcss": "8.5.25"
+    "postcss": "8.5.25",
+    "undici": "7.29.0"
   },
   "license": "MIT"
 }
