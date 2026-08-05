@@ -16,7 +16,7 @@
     <p>This body is supplied through the Svelte 5 children snippet.</p>
 
     {#snippet footer()}
-      <small>Installed artifact / 0.2.0</small>
+      <small>Installed artifact / 0.3.0</small>
     {/snippet}
   </WeBaseCard>
   <WeBaseButton {...action} />

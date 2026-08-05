@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -32,6 +32,15 @@ function pack(workspace) {
   return path.join(packs, JSON.parse(output)[0].filename);
 }
 
+function readBuildOutput(directory) {
+  return readdirSync(directory, { withFileTypes: true })
+    .flatMap((entry) => {
+      const target = path.join(directory, entry.name);
+      return entry.isDirectory() ? [readBuildOutput(target)] : [readFileSync(target, 'utf8')];
+    })
+    .join('\n');
+}
+
 try {
   mkdirSync(packs);
   cpSync(fixture, app, { recursive: true });
@@ -46,12 +55,20 @@ try {
   run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund'], app);
   run('npm', ['run', 'build'], app);
 
+  const output = readBuildOutput(path.join(app, 'dist'));
+  if (output.includes('ds-select')) {
+    throw new Error('consumer bundle contains styles from the unused WeBaseSelect export');
+  }
+  if (output.includes('Dialogs keep decisions close')) {
+    throw new Error('consumer bundle contains code from the unused WeBaseDialog export');
+  }
+
   const installedPackage = realpathSync(path.join(app, 'node_modules/@webaseui/svelte'));
   if (!installedPackage.startsWith(realpathSync(app))) {
     throw new Error(`consumer resolved a workspace link instead of its tarball: ${installedPackage}`);
   }
 
-  console.log('Validated WeBaseUI from packed tarballs in an isolated Svelte consumer build.');
+  console.log('Validated tree-shakeable WeBaseUI tarballs in an isolated Svelte consumer build.');
 } finally {
   rmSync(temporaryRoot, { recursive: true, force: true });
 }

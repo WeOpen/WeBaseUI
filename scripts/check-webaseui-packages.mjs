@@ -92,6 +92,10 @@ invariant(tokenSource.includes('--webase-color-canvas'), 'core tokens must use t
 invariant(!tokenSource.includes(legacyTokenPrefix), 'legacy token namespace must not be published');
 
 invariant(svelteManifest.exports['.'], '@webaseui/svelte must expose a package-root entry');
+invariant(
+  svelteManifest.sideEffects === false,
+  '@webaseui/svelte must declare sideEffects=false so root imports remain tree-shakeable'
+);
 invariant(!svelteManifest.exports['./components/*'], 'component deep imports must stay private');
 invariant(svelteFiles.has('dist/index.js'), '@webaseui/svelte tarball is missing dist/index.js');
 invariant(svelteFiles.has('dist/index.d.ts'), '@webaseui/svelte tarball is missing dist/index.d.ts');

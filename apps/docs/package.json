@@ -1,6 +1,6 @@
 {
   "name": "@webaseui/docs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@webaseui/core": "0.1.0",
-    "@webaseui/svelte": "0.3.0",
+    "@webaseui/svelte": "0.3.1",
     "svelte": "^5.56.8"
   },
   "devDependencies": {

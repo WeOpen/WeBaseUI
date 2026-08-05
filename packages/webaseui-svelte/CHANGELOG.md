@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+### Patch Changes
+
+- Declare the package side-effect free so bundlers can tree-shake unused components, styles, and icon code from package-root imports.
+
 ## 0.3.0
 
 ### Minor Changes
