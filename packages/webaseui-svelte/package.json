@@ -1,6 +1,6 @@
 {
   "name": "@webaseui/svelte",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Svelte 5 components for WeBaseUI.",
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   },
   "homepage": "https://github.com/WeOpen/WeBaseUI#readme",
   "type": "module",
+  "sideEffects": false,
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
