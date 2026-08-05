@@ -1,5 +1,12 @@
 # @webaseui/docs
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @webaseui/svelte@0.3.2
+
 ## 0.0.2
 
 ### Patch Changes

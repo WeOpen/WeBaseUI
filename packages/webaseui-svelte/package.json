@@ -1,6 +1,6 @@
 {
   "name": "@webaseui/svelte",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Svelte 5 components for WeBaseUI.",
   "repository": {
     "type": "git",

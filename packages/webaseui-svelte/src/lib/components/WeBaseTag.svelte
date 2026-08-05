@@ -51,11 +51,11 @@
     text-transform: uppercase;
     transition: color var(--duration-ui) var(--ease-out), border-color var(--duration-ui) var(--ease-out), background-color var(--duration-ui) var(--ease-out);
   }
-  .ds-tag-neutral { color: var(--ink-muted); background: var(--surface-muted); }
+  .ds-tag-neutral { color: var(--ink-soft); background: var(--surface-muted); }
   .ds-tag-brand { color: var(--brand); background: var(--brand-tint); }
   .ds-tag-outline { border-color: var(--hairline-strong); color: var(--ink-soft); background: transparent; }
   a.ds-tag:hover, .ds-tag.selected { border-color: var(--brand); color: var(--brand); background: var(--brand-tint); }
   a.ds-tag:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
-  small { color: currentColor; font-family: var(--mono); font-size: 9px; opacity: .75; }
+  small { color: currentColor; font-family: var(--mono); font-size: 9px; opacity: 1; }
   @media (prefers-reduced-motion: reduce) { .ds-tag { transition: none; } }
 </style>
