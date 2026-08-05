@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+### Minor Changes
+
+- Add semantic `WeBaseLink` and `WeBaseTag` navigation primitives for application migrations.
+
 ## 0.2.0 - 2026-08-04
 
 ### Added

@@ -17,7 +17,7 @@ All components and their inferred Props types are exported from the package
 root. Deep imports are unsupported.
 
 ```ts
-import type { WeBaseButtonProps, WeBaseCardProps } from '@webaseui/svelte';
+import type { WeBaseButtonProps, WeBaseCardProps, WeBaseLinkProps } from '@webaseui/svelte';
 ```
 
 Every component forwards `class`, `style`, `data-*`, ARIA attributes, and native
@@ -35,3 +35,10 @@ accept Svelte 5 snippets while preserving their string-based convenience props.
 ```
 
 See [VERSIONING.md](./VERSIONING.md) for compatibility and deprecation rules.
+
+Navigation primitives preserve anchor semantics instead of styling links as buttons:
+
+```svelte
+<WeBaseLink href="/archive" label="Back to archive" variant="back" />
+<WeBaseTag href="/blog/tags/design" label="Design" count={4} />
+```
