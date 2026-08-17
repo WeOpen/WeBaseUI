@@ -1,14 +1,19 @@
 <script lang="ts">
-  import type { HTMLAnchorAttributes } from 'svelte/elements';
+  import type { HTMLAnchorAttributes, HTMLAttributes } from 'svelte/elements';
 
   type Variant = 'neutral' | 'brand' | 'outline';
 
-  interface Props extends Omit<HTMLAnchorAttributes, 'children' | 'href'> {
+  interface Props extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
     label: string;
     href?: string;
     variant?: Variant;
     count?: number | string;
     selected?: boolean;
+    target?: HTMLAnchorAttributes['target'];
+    rel?: HTMLAnchorAttributes['rel'];
+    download?: HTMLAnchorAttributes['download'];
+    hreflang?: HTMLAnchorAttributes['hreflang'];
+    referrerpolicy?: HTMLAnchorAttributes['referrerpolicy'];
   }
 
   let {
@@ -17,6 +22,11 @@
     variant = 'neutral',
     count,
     selected = false,
+    target,
+    rel,
+    download,
+    hreflang,
+    referrerpolicy,
     class: className = '',
     ...rest
   }: Props = $props();
@@ -25,7 +35,7 @@
 </script>
 
 {#if href}
-  <a class={classes} {href} aria-current={selected ? 'page' : undefined} {...rest}>
+  <a class={classes} {href} {target} {rel} {download} {hreflang} {referrerpolicy} aria-current={selected ? 'page' : undefined} {...rest}>
     <span>{label}</span>{#if count !== undefined}<small>{count}</small>{/if}
   </a>
 {:else}
@@ -37,15 +47,15 @@
 <style>
   .ds-tag {
     display: inline-flex;
-    min-height: 26px;
+    min-height: var(--webase-component-tag-min-height);
     align-items: center;
-    gap: 7px;
-    padding: 4px 9px;
-    border: 1px solid transparent;
-    border-radius: 999px;
+    gap: var(--webase-component-tag-gap);
+    padding: var(--webase-space-2) var(--webase-component-tag-padding-inline);
+    border: var(--webase-border-thin) solid transparent;
+    border-radius: var(--webase-radius-pill);
     font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: .08em;
+    font-size: var(--webase-font-size-overline);
+    letter-spacing: var(--webase-letter-spacing-label);
     line-height: 1;
     text-decoration: none;
     text-transform: uppercase;
@@ -54,8 +64,9 @@
   .ds-tag-neutral { color: var(--ink-soft); background: var(--surface-muted); }
   .ds-tag-brand { color: var(--brand); background: var(--brand-tint); }
   .ds-tag-outline { border-color: var(--hairline-strong); color: var(--ink-soft); background: transparent; }
-  a.ds-tag:hover, .ds-tag.selected { border-color: var(--brand); color: var(--brand); background: var(--brand-tint); }
+  .ds-tag.selected { border-color: var(--brand); color: var(--brand); background: var(--brand-tint); }
   a.ds-tag:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
-  small { color: currentColor; font-family: var(--mono); font-size: 9px; opacity: 1; }
+  small { color: currentColor; font-family: var(--mono); font-size: var(--webase-font-size-meta); opacity: 1; }
+  @media (hover: hover) and (pointer: fine) { a.ds-tag:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-tint); } }
   @media (prefers-reduced-motion: reduce) { .ds-tag { transition: none; } }
 </style>

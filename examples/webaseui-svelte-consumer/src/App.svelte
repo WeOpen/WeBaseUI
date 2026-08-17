@@ -1,6 +1,7 @@
 <script lang="ts">
   import '@webaseui/core/theme.css';
   import { WeBaseAlert, WeBaseButton, WeBaseCard } from '@webaseui/svelte';
+  import { version as packageVersion } from '@webaseui/svelte/package.json';
   import type { WeBaseButtonProps } from '@webaseui/svelte';
 
   const action = {
@@ -16,7 +17,7 @@
     <p>This body is supplied through the Svelte 5 children snippet.</p>
 
     {#snippet footer()}
-      <small>Installed artifact / 0.3.0</small>
+      <small>Installed artifact / {packageVersion}</small>
     {/snippet}
   </WeBaseCard>
   <WeBaseButton {...action} />

@@ -1,0 +1,39 @@
+{
+  "description": "Exact count of signed px, em, rem, ms, s, and deg literals in public component declarations. Media-query conditions are tracked separately because CSS custom properties cannot be used there. Any change requires an explicit baseline update.",
+  "total": 0,
+  "mediaQueries": {
+    "WeBaseEmptyState.svelte": ["620px"],
+    "WeBasePagination.svelte": ["480px"],
+    "WeBaseSectionHeader.svelte": ["700px"]
+  },
+  "components": {
+    "WeBaseAccordion.svelte": 0,
+    "WeBaseAlert.svelte": 0,
+    "WeBaseBadge.svelte": 0,
+    "WeBaseBreadcrumbs.svelte": 0,
+    "WeBaseButton.svelte": 0,
+    "WeBaseCard.svelte": 0,
+    "WeBaseCheck.svelte": 0,
+    "WeBaseDialog.svelte": 0,
+    "WeBaseDivider.svelte": 0,
+    "WeBaseEmptyState.svelte": 0,
+    "WeBaseField.svelte": 0,
+    "WeBaseIcon.svelte": 0,
+    "WeBaseIconButton.svelte": 0,
+    "WeBaseLink.svelte": 0,
+    "WeBaseLoader.svelte": 0,
+    "WeBasePagination.svelte": 0,
+    "WeBaseProgress.svelte": 0,
+    "WeBaseRadio.svelte": 0,
+    "WeBaseSectionHeader.svelte": 0,
+    "WeBaseSelect.svelte": 0,
+    "WeBaseSkeleton.svelte": 0,
+    "WeBaseSlider.svelte": 0,
+    "WeBaseSwitch.svelte": 0,
+    "WeBaseTabs.svelte": 0,
+    "WeBaseTag.svelte": 0,
+    "WeBaseTextarea.svelte": 0,
+    "WeBaseToast.svelte": 0,
+    "WeBaseTooltip.svelte": 0
+  }
+}

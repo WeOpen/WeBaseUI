@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
+import { parseNpmPackOutput } from './lib/npm-pack.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const legacyBrand = [120, 117, 101].map((codePoint) => String.fromCharCode(codePoint)).join('');
@@ -42,14 +43,19 @@ function dryRunPack(workspace) {
     throw new Error(`npm pack failed for ${workspace}`);
   }
 
-  const [pack] = JSON.parse(result.stdout);
+  const pack = parseNpmPackOutput(result.stdout, workspace);
+  invariant(Array.isArray(pack.files), `npm pack returned no file list for ${workspace}`);
   return new Set(pack.files.map((file) => file.path));
 }
 
 const coreManifest = readJson('packages/webaseui-core/package.json');
 const svelteManifest = readJson('packages/webaseui-svelte/package.json');
+const consumerManifest = readJson('examples/webaseui-svelte-consumer/package.json');
 const coreFiles = dryRunPack('@webaseui/core');
 const svelteFiles = dryRunPack('@webaseui/svelte');
+const rootReadme = readFileSync(path.join(root, 'README.md'), 'utf8');
+const rootLicense = readFileSync(path.join(root, 'LICENSE'), 'utf8');
+const consumerSource = readFileSync(path.join(root, 'examples/webaseui-svelte-consumer/src/App.svelte'), 'utf8');
 const publicIndex = readFileSync(
   path.join(root, 'packages/webaseui-svelte/src/lib/index.ts'),
   'utf8'
@@ -90,8 +96,13 @@ invariant(
 
 invariant(coreManifest.exports['./theme.css'], '@webaseui/core must export theme.css');
 invariant(coreManifest.exports['./tokens.css'], '@webaseui/core must export tokens.css');
+invariant(coreManifest.exports['./brand-theme.css'], '@webaseui/core must export brand-theme.css');
 invariant(coreFiles.has('src/theme.css'), '@webaseui/core tarball is missing theme.css');
 invariant(coreFiles.has('src/tokens.css'), '@webaseui/core tarball is missing tokens.css');
+invariant(coreFiles.has('src/brand-theme.css'), '@webaseui/core tarball is missing brand-theme.css');
+invariant(coreFiles.has('CHANGELOG.md'), '@webaseui/core tarball is missing its changelog');
+invariant(coreFiles.has('LICENSE'), '@webaseui/core tarball is missing LICENSE');
+invariant(readFileSync(path.join(root, 'packages/webaseui-core/LICENSE'), 'utf8') === rootLicense, '@webaseui/core LICENSE must match the repository license');
 invariant(tokenSource.includes('--webase-color-canvas'), 'core tokens must use the --webase-* namespace');
 invariant(!tokenSource.includes(legacyTokenPrefix), 'legacy token namespace must not be published');
 
@@ -105,7 +116,14 @@ invariant(svelteFiles.has('dist/index.js'), '@webaseui/svelte tarball is missing
 invariant(svelteFiles.has('dist/index.d.ts'), '@webaseui/svelte tarball is missing dist/index.d.ts');
 invariant(svelteFiles.has('CHANGELOG.md'), '@webaseui/svelte tarball is missing its changelog');
 invariant(svelteFiles.has('VERSIONING.md'), '@webaseui/svelte tarball is missing its versioning policy');
+invariant(svelteFiles.has('LICENSE'), '@webaseui/svelte tarball is missing LICENSE');
+invariant(readFileSync(path.join(root, 'packages/webaseui-svelte/LICENSE'), 'utf8') === rootLicense, '@webaseui/svelte LICENSE must match the repository license');
 invariant(publicComponents.length === 28, `expected 28 public components, found ${publicComponents.length}`);
+invariant(rootReadme.includes('28 typed Svelte 5 components'), 'root README component count is stale');
+invariant(consumerSource.includes("@webaseui/svelte/package.json"), 'consumer fixture must derive the displayed package version');
+for (const [name, version] of Object.entries({ ...consumerManifest.dependencies, ...consumerManifest.devDependencies })) {
+  invariant(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version), `consumer fixture dependency ${name} must use an exact version`);
+}
 for (const component of navigationPrimitives) {
   invariant(publicComponents.includes(component), `${component} must be exported from the package root`);
 }

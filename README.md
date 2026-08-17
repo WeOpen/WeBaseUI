@@ -5,7 +5,7 @@ WeBaseUI is an editorial design system built around calm typography, paper-like 
 ## Packages
 
 - `@webaseui/core` — CSS design tokens and theme primitives.
-- `@webaseui/svelte` — 26 typed Svelte 5 components.
+- `@webaseui/svelte` — 28 typed Svelte 5 components.
 
 ## Install
 
@@ -32,15 +32,18 @@ All public component and Props exports use the `WeBase*` prefix. Public design t
 
 ## Development
 
-Requires Node.js 22.13 or newer.
+Requires Node.js 22.13+ on Node 22, or Node 24.
 
 ```sh
 npm install
+npm run test:unit
 npm run check
 npm run check:consumer
+npm run test:browser
+npm run test:visual
 ```
 
-`npm run check` validates the generated package artifacts and public exports. `npm run check:consumer` packs both workspaces and builds an isolated Svelte app from the tarballs, catching errors that workspace links can hide.
+`npm run test:unit` covers collection, overlay, Select, Toast, documentation, and package-script boundaries with Vitest, and enforces 90% statements, branches, functions, and lines across the core state tools. `npm run check` runs those unit tests, Svelte type checks, builds the packages and documentation app, and validates package artifacts, public exports, token contracts, documentation policy, size budgets, and visual-baseline coverage. `npm run check:consumer` packs both workspaces and builds isolated apps against the minimum and current supported Svelte versions. `npm run test:browser` exercises component behavior, SSR/hydration, and the documentation UI in Chromium, Firefox, and WebKit. `npm run test:visual` compares the 28 public component specimens and key states against the reviewed Chromium baselines.
 
 ## Documentation app
 
@@ -61,6 +64,16 @@ npm run changeset
 ## Architecture
 
 The framework-neutral layer lives in `@webaseui/core`. Framework bindings consume that shared layer and own only component behavior and rendering. The planned React package will therefore be added as `@webaseui/react` alongside `@webaseui/svelte`, rather than translating Svelte components directly.
+
+See the [maturity development plan](./DEVELOPMENT_PLAN.md) for the roadmap from the current package baseline to a stable 1.0 release.
+
+Release-candidate governance is tracked in the
+[support matrix](./docs/SUPPORT_MATRIX.md),
+[adoption and upgrade matrix](./docs/ADOPTION_MATRIX.md),
+[screen-reader audit](./docs/SCREEN_READER_AUDIT.md),
+[release runbook](./docs/RELEASE_RUNBOOK.md),
+[RC readiness](./docs/RC_READINESS.md), and
+[security policy](./SECURITY.md).
 
 ## License
 

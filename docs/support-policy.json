@@ -1,0 +1,24 @@
+{
+  "node": {
+    "engine": "^22.13.0 || ^24.0.0",
+    "release": "22.13",
+    "compatibility": "24"
+  },
+  "svelte": {
+    "peer": ">=5.20.0 <6",
+    "minimum": "5.20.0"
+  },
+  "typescript": {
+    "minimum": "5.5.4",
+    "maximumExclusive": "7.0.0"
+  },
+  "browsers": {
+    "policy": "current and previous stable major releases",
+    "playwright": "1.62.1",
+    "validated": {
+      "chromium": "151.0.7922.34",
+      "firefox": "153.0",
+      "webkit": "26.5"
+    }
+  }
+}

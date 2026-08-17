@@ -1,0 +1,27 @@
+/**
+ * Example brand theme.
+ *
+ * Import this file after theme.css and set data-theme="brand" on the root.
+ * It overrides semantic values only, so component geometry and behavior stay
+ * on the shared WeBaseUI contract.
+ */
+:root[data-theme='brand'] {
+  color-scheme: light;
+  --webase-color-canvas: #f4f6f2;
+  --webase-color-surface: #fbfcf8;
+  --webase-color-surface-muted: #e2ebe3;
+  --webase-color-ink: #17231b;
+  --webase-color-ink-soft: #415347;
+  --webase-color-ink-muted: #607266;
+  --webase-color-border: #d7e0d8;
+  --webase-color-border-strong: #b9cbbd;
+  --webase-color-placeholder: #e2ebe3;
+  --webase-color-brand: #315c52;
+  --webase-color-brand-light: #477665;
+  --webase-color-brand-tint: #e7f0ec;
+  --webase-color-error: #a44e4e;
+  --webase-color-success: #2f7650;
+  --webase-color-warning: #8a5d2f;
+  --webase-color-warning-field: #f1e6d4;
+  --webase-color-info: #3f6f82;
+}

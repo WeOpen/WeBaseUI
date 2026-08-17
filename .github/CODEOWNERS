@@ -1,0 +1,7 @@
+# Default review responsibility for the design-system repository.
+* @willxue
+
+# Package and release changes need the repository maintainer's review.
+/packages/ @willxue
+/.github/ @willxue
+/DEVELOPMENT_PLAN.md @willxue

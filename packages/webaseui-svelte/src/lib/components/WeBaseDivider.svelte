@@ -14,7 +14,7 @@
 {/if}
 
 <style>
-  .ds-divider { display: flex; align-items: center; min-height: 20px; background-image: var(--dot-rule-image); background-position: center; background-repeat: repeat-x; background-size: 7px 2px; }
-  .ds-divider span { padding-right: 14px; background: var(--paper); color: var(--brand); font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
-  .ds-divider-vertical { display: inline-block; width: 2px; min-height: 44px; background-image: var(--dot-rule-image); background-position: center; background-repeat: repeat-y; background-size: 2px 7px; }
+  .ds-divider { display: flex; align-items: center; min-height: var(--webase-space-10); background-image: var(--dot-rule-image); background-position: center; background-repeat: repeat-x; background-size: var(--webase-component-divider-dot-gap) var(--webase-space-1); }
+  .ds-divider span { padding-inline-end: var(--webase-space-7); background: var(--paper); color: var(--brand); font-family: var(--mono); font-size: var(--webase-font-size-overline); letter-spacing: var(--webase-letter-spacing-kicker); text-transform: uppercase; }
+  .ds-divider-vertical { display: inline-block; width: var(--webase-space-1); min-height: var(--webase-size-control-lg); background-image: var(--dot-rule-image); background-position: center; background-repeat: repeat-y; background-size: var(--webase-space-1) var(--webase-component-divider-dot-gap); }
 </style>

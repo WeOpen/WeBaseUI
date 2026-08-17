@@ -29,6 +29,15 @@ export { default as WeBaseTextarea } from './components/WeBaseTextarea.svelte';
 export { default as WeBaseToast } from './components/WeBaseToast.svelte';
 export { default as WeBaseTooltip } from './components/WeBaseTooltip.svelte';
 export type { WeBaseIconName } from './components/WeBaseIcon.svelte';
+export type {
+  WeBaseAccordionItem,
+  WeBaseBreadcrumbItem,
+  WeBaseCountFormatter,
+  WeBaseNumberFormatter,
+  WeBasePageLabel,
+  WeBaseSelectOption,
+  WeBaseSliderValueFormatter
+} from './types.js';
 
 export type WeBaseAccordionProps = ComponentProps<typeof import('./components/WeBaseAccordion.svelte').default>;
 export type WeBaseAlertProps = ComponentProps<typeof import('./components/WeBaseAlert.svelte').default>;

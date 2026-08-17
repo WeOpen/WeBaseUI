@@ -1,0 +1,122 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Release channel
+        required: true
+        default: stable
+        type: choice
+        options:
+          - stable
+          - next
+          - canary
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  quality:
+    if: github.event_name == 'push' || inputs.channel != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.13
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run check:changeset
+      - run: npm audit --audit-level=high
+      - run: npm run check
+      - run: npm run check:consumer
+      - run: npm run test:browser
+
+  visual:
+    if: github.event_name == 'push' || inputs.channel != ''
+    needs: quality
+    runs-on: macos-14
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.13
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install chromium
+      - run: npm run test:visual
+
+  stable:
+    if: github.event_name == 'push' || inputs.channel == 'stable'
+    needs: [quality, visual]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.13
+          cache: npm
+      - run: npm ci
+      - run: npm install --global npm@11.5.1
+      - id: release
+        uses: changesets/action@52025003bf4794281597cb5b5e566485d9473389 # v1.5.0
+        with:
+          version: npm run version-packages
+          publish: npm run release:ci
+          title: 'chore: release packages'
+          commit: 'chore: release packages'
+          commitMode: github-api
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_ACCESS: public
+      - if: steps.release.outputs.published == 'true'
+        run: npm run check:registry -- --tag=latest --require-provenance
+
+  prerelease:
+    if: github.event_name == 'workflow_dispatch' && inputs.channel != 'stable'
+    needs: [quality, visual]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.13
+          cache: npm
+      - run: npm ci
+      - run: npm install --global npm@11.5.1
+      - run: node scripts/release-channel.mjs "${{ inputs.channel }}" --publish
+        env:
+          CI: true
+          NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_ACCESS: public
+      - run: npm run check:registry -- --tag=${{ inputs.channel }} --require-provenance

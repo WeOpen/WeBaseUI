@@ -1,23 +1,28 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements';
+  import { findRovingFocusIndex } from '../internal/roving-focus.js';
+  import type { WeBaseAccordionItem, WeBaseNumberFormatter } from '../types.js';
   import WeBaseIcon from './WeBaseIcon.svelte';
 
-  interface Item { title: string; content: string; }
-  interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'id'> { items: Item[]; open?: number; id?: string; }
+  interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'id'> { items: WeBaseAccordionItem[]; open?: number; id?: string; formatIndex?: WeBaseNumberFormatter; }
 
   const uid = $props.id();
-  let { items, open = $bindable(0), id = uid, class: className = '', ...rest }: Props = $props();
+  let { items, open = $bindable(0), id = uid, formatIndex = (value) => String(value).padStart(2, '0'), class: className = '', ...rest }: Props = $props();
   let root: HTMLDivElement;
+
+  $effect(() => {
+    if (!Number.isInteger(open) || open < -1 || open >= items.length) open = -1;
+  });
 
   function toggle(index: number) {
     open = open === index ? -1 : index;
   }
 
   function handleKeydown(event: KeyboardEvent, index: number) {
-    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+    const next = findRovingFocusIndex(items, index, event.key, 'vertical');
+    if (next === undefined || next < 0) return;
     event.preventDefault();
     const buttons = root.querySelectorAll<HTMLButtonElement>('.ds-accordion-trigger');
-    const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : event.key === 'ArrowDown' ? (index + 1) % buttons.length : (index - 1 + buttons.length) % buttons.length;
     buttons[next]?.focus();
   }
 </script>
@@ -35,7 +40,7 @@
           onclick={() => toggle(index)}
           onkeydown={(event) => handleKeydown(event, index)}
         >
-          <span><small>{String(index + 1).padStart(2, '0')}</small>{item.title}</span>
+          <span><small>{formatIndex(index + 1)}</small>{item.title}</span>
           <WeBaseIcon name="chevron-down" size={18} strokeWidth={1.6} />
         </button>
       </h3>
@@ -48,19 +53,19 @@
 </div>
 
 <style>
-  .ds-accordion { border-top: 1px solid var(--hairline-strong); }
-  section { border-bottom: 1px solid var(--hairline-strong); }
+  .ds-accordion { border-top: var(--webase-border-thin) solid var(--hairline-strong); }
+  section { border-bottom: var(--webase-border-thin) solid var(--hairline-strong); }
   h3 { margin: 0; }
-  .ds-accordion-trigger { display: flex; width: 100%; min-height: 58px; align-items: center; justify-content: space-between; gap: 18px; padding: 0 4px; border: 0; color: var(--ink); background: transparent; cursor: pointer; font-family: var(--font); font-size: 18px; text-align: left; }
-  .ds-accordion-trigger > span { display: flex; align-items: center; gap: 16px; }
-  small { color: var(--brand); font-family: var(--mono); font-size: 9px; letter-spacing: .1em; }
+  .ds-accordion-trigger { display: flex; width: 100%; min-height: var(--webase-component-accordion-trigger-height); align-items: center; justify-content: space-between; gap: var(--webase-space-9); padding: 0 var(--webase-space-2); border: 0; color: var(--ink); background: transparent; cursor: pointer; font-family: var(--font); font-size: var(--webase-component-accordion-title-font-size); text-align: start; }
+  .ds-accordion-trigger > span { display: flex; align-items: center; gap: var(--webase-space-8); }
+  small { color: var(--brand); font-family: var(--mono); font-size: var(--webase-font-size-meta); letter-spacing: var(--webase-letter-spacing-meta); }
   .ds-accordion-trigger :global(svg) { flex: none; color: var(--brand); transition: transform var(--duration-ui) var(--ease-out); }
-  section.open .ds-accordion-trigger :global(svg) { transform: rotate(180deg); }
-  .ds-accordion-trigger:hover { color: var(--brand); }
+  section.open .ds-accordion-trigger :global(svg) { transform: rotate(var(--webase-component-accordion-icon-open-rotation)); }
   .ds-accordion-trigger:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
-  .ds-accordion-panel { padding: 0 44px 20px; animation: ds-accordion-in var(--duration-ui) var(--ease-out) both; }
+  .ds-accordion-panel { padding: 0 var(--webase-component-accordion-panel-padding-inline) var(--webase-space-10); animation: ds-accordion-in var(--duration-ui) var(--ease-out) both; }
   .ds-accordion-panel[hidden] { display: none; }
-  p { max-width: 58ch; margin: 0; color: var(--ink-muted); font-size: 14px; line-height: 1.55; }
-  @keyframes ds-accordion-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  p { max-width: 58ch; margin: 0; color: var(--ink-muted); font-size: var(--webase-font-size-body); line-height: var(--webase-line-height-relaxed); }
+  @keyframes ds-accordion-in { from { opacity: 0; transform: translateY(var(--webase-component-accordion-enter-offset)); } to { opacity: 1; transform: translateY(0); } }
+  @media (hover: hover) and (pointer: fine) { .ds-accordion-trigger:hover { color: var(--brand); } }
   @media (prefers-reduced-motion: reduce) { .ds-accordion-trigger :global(svg), .ds-accordion-panel { animation: none; transition: none; } }
 </style>

@@ -1,49 +1,295 @@
 /**
- * WeBaseUI default theme
+ * WeBaseUI public token contract.
  *
- * Public tokens use the --webase-* namespace. The short names at the end are
- * compatibility aliases for the existing site and will remain through 1.x.
- * Consumers switch theme by setting data-theme="dark" on the root element.
+ * The file is intentionally layered:
+ * 1. Primitive values are the raw palette, spacing, size, type, and motion
+ *    building blocks.
+ * 2. Semantic values describe what a surface or color means.
+ * 3. Component values provide stable geometry for the public components.
+ *
+ * Consumers should override semantic or component tokens, not primitives.
+ * Compatibility aliases at the end remain available through the 1.x window.
+ * Set data-theme="dark" on the document root to select the dark palette.
  */
 :root {
   color-scheme: light;
-  --webase-color-canvas: #f5f4ed;
-  --webase-color-surface: #faf9f5;
-  --webase-color-surface-muted: #e8e6dc;
-  --webase-color-ink: #141413;
-  --webase-color-ink-soft: #504e49;
-  --webase-color-ink-muted: #6b6a64;
-  --webase-color-border: #e5e3d8;
-  --webase-color-border-strong: #d8d5c9;
-  --webase-color-placeholder: #e8e6dc;
-  --webase-color-brand: #1b365d;
-  --webase-color-brand-light: #2d5a8a;
-  --webase-color-brand-tint: #eef2f7;
-  --webase-color-error: #9b4c46;
-  --webase-color-success: #3f7658;
-  --webase-color-warning: #8e4e36;
-  --webase-color-warning-field: #f1dfd4;
-  --webase-color-info: #56768f;
-  --webase-focus-ring: 2px solid var(--webase-color-brand);
-  --webase-focus-ring-offset: 3px;
-  --webase-dot-rule-image: radial-gradient(circle, var(--webase-color-brand) 0 1px, transparent 1.25px);
-  --webase-shadow-book: rgb(20 20 19 / 14%);
-  --webase-shadow-whisper: 0 16px 36px rgb(20 20 19 / 8%);
-  --webase-shadow-offset: color-mix(in srgb, var(--webase-color-ink) 22%, transparent);
-  --webase-emboss-light: rgb(255 255 255 / 72%);
-  --webase-emboss-dark: rgb(20 20 19 / 20%);
-  --webase-font-body: Charter, 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
-  --webase-font-sans: 'Futura Local', 'Futura Local Fallback', Arial, sans-serif;
-  --webase-font-display: 'Cormorant Garamond Local', 'Cormorant Local Fallback', Georgia, serif;
-  --webase-font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
-  --webase-letter-spacing-caps: 0.16em;
-  --webase-letter-spacing-nav: 0.09em;
-  --webase-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --webase-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --webase-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Primitive palette */
+  --webase-palette-canvas: #f5f4ed;
+  --webase-palette-surface: #faf9f5;
+  --webase-palette-surface-muted: #e8e6dc;
+  --webase-palette-ink: #141413;
+  --webase-palette-ink-soft: #504e49;
+  --webase-palette-ink-muted: #6b6a64;
+  --webase-palette-border: #e5e3d8;
+  --webase-palette-border-strong: #d8d5c9;
+  --webase-palette-placeholder: #e8e6dc;
+  --webase-palette-brand: #1b365d;
+  --webase-palette-brand-light: #2d5a8a;
+  --webase-palette-brand-tint: #eef2f7;
+  --webase-palette-error: #9b4c46;
+  --webase-palette-success: #3f7658;
+  --webase-palette-warning: #8e4e36;
+  --webase-palette-warning-field: #f1dfd4;
+  --webase-palette-info: #56768f;
+  --webase-palette-shadow-book: rgb(20 20 19 / 14%);
+  --webase-palette-shadow-whisper: 0 16px 36px rgb(20 20 19 / 8%);
+  --webase-palette-emboss-light: rgb(255 255 255 / 72%);
+  --webase-palette-emboss-dark: rgb(20 20 19 / 20%);
+  --webase-palette-font-body: Charter, 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+  --webase-palette-font-sans: 'Futura Local', 'Futura Local Fallback', Arial, sans-serif;
+  --webase-palette-font-display: 'Cormorant Garamond Local', 'Cormorant Local Fallback', Georgia, serif;
+  --webase-palette-font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Primitive spacing */
+  --webase-space-1: 2px;
+  --webase-space-2: 4px;
+  --webase-space-3: 6px;
+  --webase-space-4: 8px;
+  --webase-space-5: 10px;
+  --webase-space-6: 12px;
+  --webase-space-7: 14px;
+  --webase-space-8: 16px;
+  --webase-space-9: 18px;
+  --webase-space-10: 20px;
+  --webase-space-11: 24px;
+  --webase-space-12: 28px;
+  --webase-space-13: 30px;
+  --webase-space-14: 32px;
+  --webase-space-15: 42px;
+
+  /* Primitive sizes and shape */
+  --webase-size-control-sm: 36px;
+  --webase-size-control-md: 40px;
+  --webase-size-control-lg: 44px;
+  --webase-size-control-field: 46px;
+  --webase-size-target-min: 24px;
+  --webase-size-choice: 20px;
+  --webase-size-icon: 18px;
+  --webase-size-switch-width: 42px;
+  --webase-size-switch-height: 24px;
+  --webase-size-switch-thumb: 16px;
+  --webase-size-dialog: 460px;
+  --webase-size-dialog-close: 36px;
+  --webase-size-dialog-action: 40px;
+  --webase-size-textarea: 110px;
+  --webase-size-select-menu: 220px;
+  --webase-size-tooltip-max: 220px;
+  --webase-radius-none: 0;
+  --webase-radius-sm: 2px;
+  --webase-radius-pill: 999px;
+  --webase-radius-circle: 50%;
+  --webase-border-thin: 1px;
+  --webase-border-emphasis: 2px;
+  --webase-border-accent: 3px;
+  --webase-focus-offset: 3px;
+
+  /* Primitive typography */
+  --webase-font-size-meta: 9px;
+  --webase-font-size-overline: 10px;
+  --webase-font-size-label: 11px;
+  --webase-font-size-caption: 12px;
+  --webase-font-size-body-sm: 13px;
+  --webase-font-size-body: 14px;
+  --webase-font-size-control: 16px;
+  --webase-font-size-option: 15px;
+  --webase-font-size-icon-button: 20px;
+  --webase-font-size-title-sm: 24px;
+  --webase-font-size-title: 28px;
+  --webase-font-size-dialog: 34px;
+  --webase-line-height-tight: .98;
+  --webase-line-height-meta: 1.35;
+  --webase-line-height-help: 1.4;
+  --webase-line-height-body: 1.45;
+  --webase-line-height-reading: 1.5;
+  --webase-line-height-relaxed: 1.55;
+  --webase-letter-spacing-caps: .16em;
+  --webase-letter-spacing-kicker: .12em;
+  --webase-letter-spacing-meta: .1em;
+  --webase-letter-spacing-nav: .09em;
+  --webase-letter-spacing-label: .08em;
+
+  /* Primitive layering and motion */
+  --webase-z-base: 0;
+  --webase-z-sticky: 20;
+  --webase-z-tooltip: 30;
+  --webase-z-select: 40;
+  --webase-z-dialog: 50;
+  --webase-z-toast: 60;
+  --webase-ease-out: cubic-bezier(.23, 1, .32, 1);
+  --webase-ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --webase-ease-drawer: cubic-bezier(.32, .72, 0, 1);
   --webase-duration-fast: 140ms;
   --webase-duration-ui: 200ms;
+  --webase-duration-slow: 320ms;
+  --webase-rotation-half: 180deg;
+  --webase-rotation-full: 360deg;
 
+  /* Semantic tokens */
+  --webase-color-canvas: var(--webase-palette-canvas);
+  --webase-color-surface: var(--webase-palette-surface);
+  --webase-color-surface-muted: var(--webase-palette-surface-muted);
+  --webase-color-ink: var(--webase-palette-ink);
+  --webase-color-ink-soft: var(--webase-palette-ink-soft);
+  --webase-color-ink-muted: var(--webase-palette-ink-muted);
+  --webase-color-border: var(--webase-palette-border);
+  --webase-color-border-strong: var(--webase-palette-border-strong);
+  --webase-color-placeholder: var(--webase-palette-placeholder);
+  --webase-color-brand: var(--webase-palette-brand);
+  --webase-color-brand-light: var(--webase-palette-brand-light);
+  --webase-color-brand-tint: var(--webase-palette-brand-tint);
+  --webase-color-error: var(--webase-palette-error);
+  --webase-color-success: var(--webase-palette-success);
+  --webase-color-warning: var(--webase-palette-warning);
+  --webase-color-warning-field: var(--webase-palette-warning-field);
+  --webase-color-info: var(--webase-palette-info);
+  --webase-focus-ring: var(--webase-border-emphasis) solid var(--webase-color-brand);
+  --webase-focus-ring-offset: var(--webase-focus-offset);
+  --webase-interactive-target-min: var(--webase-size-target-min);
+  --webase-dot-rule-image: radial-gradient(circle, var(--webase-color-brand) 0 1px, transparent 1.25px);
+  --webase-shadow-book: var(--webase-palette-shadow-book);
+  --webase-shadow-whisper: var(--webase-palette-shadow-whisper);
+  --webase-shadow-offset: color-mix(in srgb, var(--webase-color-ink) 22%, transparent);
+  --webase-emboss-light: var(--webase-palette-emboss-light);
+  --webase-emboss-dark: var(--webase-palette-emboss-dark);
+  --webase-font-body: var(--webase-palette-font-body);
+  --webase-font-sans: var(--webase-palette-font-sans);
+  --webase-font-display: var(--webase-palette-font-display);
+  --webase-font-mono: var(--webase-palette-font-mono);
+
+  /* Component tokens */
+  --webase-component-control-height: var(--webase-size-control-field);
+  --webase-component-control-padding-inline: var(--webase-space-6);
+  --webase-component-control-border-width: var(--webase-border-thin);
+  --webase-component-control-radius: var(--webase-radius-none);
+  --webase-component-control-font-size: var(--webase-font-size-control);
+  --webase-component-control-focus-shadow-offset: var(--webase-space-2);
+  --webase-component-control-help-font-size: var(--webase-font-size-caption);
+  --webase-component-control-help-line-height: var(--webase-line-height-help);
+  --webase-component-visually-hidden-size: var(--webase-border-thin);
+  --webase-component-button-height: var(--webase-size-control-lg);
+  --webase-component-button-height-sm: var(--webase-size-control-sm);
+  --webase-component-button-padding-inline: var(--webase-space-8);
+  --webase-component-button-padding-inline-sm: var(--webase-space-6);
+  --webase-component-button-radius: var(--webase-radius-sm);
+  --webase-component-button-gap: var(--webase-space-4);
+  --webase-component-button-font-size: var(--webase-font-size-label);
+  --webase-component-button-font-size-sm: var(--webase-font-size-meta);
+  --webase-component-button-hover-offset: -1px;
+  --webase-component-button-text-underline-offset: var(--webase-space-2);
+  --webase-component-button-spinner-duration: 800ms;
+  --webase-component-button-spinner-rotation: var(--webase-rotation-full);
+  --webase-component-icon-button-size: var(--webase-size-control-lg);
+  --webase-component-icon-button-radius: var(--webase-radius-circle);
+  --webase-component-icon-button-font-size: var(--webase-font-size-icon-button);
+  --webase-component-icon-button-hover-rotation: 4deg;
+  --webase-component-choice-size: var(--webase-size-choice);
+  --webase-component-choice-gap: 9px;
+  --webase-component-choice-copy-gap: var(--webase-space-1);
+  --webase-component-radio-mark-size: var(--webase-space-4);
+  --webase-component-switch-width: var(--webase-size-switch-width);
+  --webase-component-switch-height: var(--webase-size-switch-height);
+  --webase-component-switch-padding: 3px;
+  --webase-component-switch-thumb-size: var(--webase-size-switch-thumb);
+  --webase-component-switch-thumb-translate: 18px;
+  --webase-component-switch-thumb-shadow: 0 var(--webase-border-thin) 3px var(--webase-shadow-book);
+  --webase-component-select-menu-max-height: var(--webase-size-select-menu);
+  --webase-component-select-option-height: var(--webase-size-control-md);
+  --webase-component-select-option-padding-inline: var(--webase-space-5);
+  --webase-component-select-option-font-size: var(--webase-font-size-option);
+  --webase-component-select-menu-padding: var(--webase-space-3);
+  --webase-component-select-trigger-padding-right: 42px;
+  --webase-component-select-menu-offset: 9px;
+  --webase-component-select-menu-pattern-image: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--webase-color-ink) 8%, transparent) 0 .6px, transparent .8px);
+  --webase-component-select-menu-pattern-size: var(--webase-space-6);
+  --webase-component-select-menu-shadow-offset: var(--webase-space-4);
+  --webase-component-select-chevron-open-rotation: var(--webase-rotation-half);
+  --webase-component-select-option-hover-offset: 3px;
+  --webase-component-select-menu-enter-offset: -5px;
+  --webase-component-select-check-enter-rotation: -12deg;
+  --webase-component-overlay-z-index: var(--webase-z-select);
+  --webase-component-overlay-viewport-padding: var(--webase-space-4);
+  --webase-component-dialog-z-index: var(--webase-z-dialog);
+  --webase-component-dialog-width: var(--webase-size-dialog);
+  --webase-component-dialog-padding: var(--webase-space-13);
+  --webase-component-dialog-shell-padding: var(--webase-space-11);
+  --webase-component-dialog-close-size: var(--webase-size-dialog-close);
+  --webase-component-dialog-action-height: var(--webase-size-dialog-action);
+  --webase-component-dialog-backdrop-blur: 3px;
+  --webase-component-dialog-shadow-offset: var(--webase-space-6);
+  --webase-component-dialog-title-letter-spacing: -.04em;
+  --webase-component-dialog-enter-offset: var(--webase-space-6);
+  --webase-component-dialog-enter-rotation: -.4deg;
+  --webase-component-tooltip-z-index: var(--webase-z-tooltip);
+  --webase-component-tooltip-max-width: var(--webase-size-tooltip-max);
+  --webase-component-tooltip-padding-block: var(--webase-space-4);
+  --webase-component-tooltip-padding-inline: var(--webase-space-5);
+  --webase-component-tooltip-offset: var(--webase-space-5);
+  --webase-component-tooltip-enter-offset: var(--webase-space-2);
+  --webase-component-textarea-min-height: var(--webase-size-textarea);
+  --webase-component-alert-gap: var(--webase-space-6);
+  --webase-component-alert-min-height: 72px;
+  --webase-component-alert-padding-block: 15px;
+  --webase-component-alert-padding-inline: var(--webase-space-8);
+  --webase-component-alert-icon-size: var(--webase-space-12);
+  --webase-component-alert-title-letter-spacing: .07em;
+  --webase-component-alert-dismiss-size: var(--webase-space-14);
+  --webase-component-badge-gap: var(--webase-space-3);
+  --webase-component-badge-min-height: var(--webase-space-11);
+  --webase-component-badge-padding-block: 3px;
+  --webase-component-badge-padding-inline: var(--webase-space-4);
+  --webase-component-badge-dot-size: 5px;
+  --webase-component-breadcrumb-gap: 7px;
+  --webase-component-link-gap: 7px;
+  --webase-component-link-hover-offset: -1px;
+  --webase-component-loader-gap: 5px;
+  --webase-component-loader-duration: 900ms;
+  --webase-component-loader-delay-step: 150ms;
+  --webase-component-loader-label-gap: 7px;
+  --webase-component-pagination-gap: 5px;
+  --webase-component-progress-height: var(--webase-space-4);
+  --webase-component-progress-height-compact: var(--webase-space-2);
+  --webase-component-slider-track-height: 3px;
+  --webase-component-slider-thumb-offset: -8px;
+  --webase-component-slider-thumb-size-firefox: 15px;
+  --webase-component-tabs-trigger-height: 42px;
+  --webase-component-tag-min-height: 26px;
+  --webase-component-tag-gap: 7px;
+  --webase-component-tag-padding-inline: 9px;
+  --webase-component-toast-max-width: 380px;
+  --webase-component-toast-padding-block: 13px;
+  --webase-component-toast-duration: 220ms;
+  --webase-component-toast-mark-size: 26px;
+  --webase-component-toast-copy-gap: 3px;
+  --webase-component-toast-title-letter-spacing: .06em;
+  --webase-component-accordion-trigger-height: 58px;
+  --webase-component-accordion-title-font-size: var(--webase-size-icon);
+  --webase-component-accordion-panel-padding-inline: var(--webase-size-control-lg);
+  --webase-component-accordion-icon-open-rotation: var(--webase-rotation-half);
+  --webase-component-accordion-enter-offset: -4px;
+  --webase-component-card-min-height: 220px;
+  --webase-component-card-padding: 22px;
+  --webase-component-card-shadow-offset: var(--webase-space-4);
+  --webase-component-card-hover-offset: -2px;
+  --webase-component-card-hover-shadow-offset: var(--webase-space-5);
+  --webase-component-card-title-letter-spacing: -.035em;
+  --webase-component-divider-dot-gap: 7px;
+  --webase-component-empty-min-height: 150px;
+  --webase-component-empty-mark-size: 54px;
+  --webase-component-empty-kicker-gap: 7px;
+  --webase-component-empty-title-letter-spacing: -.03em;
+  --webase-component-section-header-margin-bottom: 34px;
+  --webase-component-section-header-kicker-letter-spacing: .14em;
+  --webase-component-section-header-title-min-size: 38px;
+  --webase-component-section-header-title-fluid-size: 6vw;
+  --webase-component-section-header-title-max-size: 72px;
+  --webase-component-section-header-title-letter-spacing: -.06em;
+  --webase-component-section-header-note-max-width: 280px;
+  --webase-component-skeleton-media-size: 74px;
+  --webase-component-skeleton-shimmer-angle: 100deg;
+  --webase-component-skeleton-shimmer-duration: 1.5s;
+
+  /* Compatibility aliases */
   --paper: var(--webase-color-canvas);
   --surface: var(--webase-color-surface);
   --surface-muted: var(--webase-color-surface-muted);
@@ -84,25 +330,53 @@
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --webase-color-canvas: #141413;
-  --webase-color-surface: #242421;
-  --webase-color-surface-muted: #30302e;
-  --webase-color-ink: #faf9f5;
-  --webase-color-ink-soft: #b0aea5;
-  --webase-color-ink-muted: #8f8c82;
-  --webase-color-border: #44423d;
-  --webase-color-border-strong: #5d5a52;
-  --webase-color-placeholder: #30302e;
-  --webase-color-brand: #9bb3d1;
-  --webase-color-brand-light: #c2d1e3;
-  --webase-color-brand-tint: #293541;
-  --webase-color-error: #d98d86;
-  --webase-color-success: #7fb795;
-  --webase-color-warning: #f0b99f;
-  --webase-color-warning-field: #442b23;
-  --webase-color-info: #8fb2cc;
-  --webase-shadow-book: rgb(0 0 0 / 38%);
-  --webase-shadow-whisper: 0 18px 44px rgb(0 0 0 / 34%);
-  --webase-emboss-light: rgb(255 255 255 / 10%);
-  --webase-emboss-dark: rgb(0 0 0 / 55%);
+  --webase-palette-canvas: #141413;
+  --webase-palette-surface: #242421;
+  --webase-palette-surface-muted: #30302e;
+  --webase-palette-ink: #faf9f5;
+  --webase-palette-ink-soft: #b0aea5;
+  --webase-palette-ink-muted: #8f8c82;
+  --webase-palette-border: #44423d;
+  --webase-palette-border-strong: #5d5a52;
+  --webase-palette-placeholder: #30302e;
+  --webase-palette-brand: #9bb3d1;
+  --webase-palette-brand-light: #c2d1e3;
+  --webase-palette-brand-tint: #293541;
+  --webase-palette-error: #d98d86;
+  --webase-palette-success: #7fb795;
+  --webase-palette-warning: #f0b99f;
+  --webase-palette-warning-field: #442b23;
+  --webase-palette-info: #8fb2cc;
+  --webase-palette-shadow-book: rgb(0 0 0 / 38%);
+  --webase-palette-shadow-whisper: 0 18px 44px rgb(0 0 0 / 34%);
+  --webase-palette-emboss-light: rgb(255 255 255 / 10%);
+  --webase-palette-emboss-dark: rgb(0 0 0 / 55%);
+}
+
+@media (forced-colors: active) {
+  :root,
+  :root[data-theme='dark'] {
+    color-scheme: light;
+    --webase-color-canvas: Canvas;
+    --webase-color-surface: Canvas;
+    --webase-color-surface-muted: Canvas;
+    --webase-color-ink: CanvasText;
+    --webase-color-ink-soft: CanvasText;
+    --webase-color-ink-muted: CanvasText;
+    --webase-color-border: ButtonBorder;
+    --webase-color-border-strong: ButtonText;
+    --webase-color-placeholder: CanvasText;
+    --webase-color-brand: LinkText;
+    --webase-color-brand-light: LinkText;
+    --webase-color-brand-tint: Highlight;
+    --webase-color-error: CanvasText;
+    --webase-color-success: CanvasText;
+    --webase-color-warning: CanvasText;
+    --webase-color-warning-field: Canvas;
+    --webase-color-info: CanvasText;
+    --webase-focus-ring: var(--webase-border-emphasis) solid Highlight;
+    --webase-shadow-book: none;
+    --webase-shadow-whisper: none;
+    --webase-shadow-offset: CanvasText;
+  }
 }

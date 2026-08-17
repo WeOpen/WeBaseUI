@@ -13,13 +13,16 @@
     "**/*.css"
   ],
   "exports": {
+    "./brand-theme.css": "./src/brand-theme.css",
     "./tokens.css": "./src/tokens.css",
     "./theme.css": "./src/theme.css",
     "./package.json": "./package.json"
   },
   "files": [
     "src",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "publishConfig": {
     "access": "public"
