@@ -68,5 +68,6 @@
   a.ds-tag:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-ring-offset); }
   small { color: currentColor; font-family: var(--mono); font-size: var(--webase-font-size-meta); opacity: 1; }
   @media (hover: hover) and (pointer: fine) { a.ds-tag:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-tint); } }
+  @media (forced-colors: active) {.ds-tag.selected {forced-color-adjust:none;border-color:Highlight;color:CanvasText;background:Canvas}}
   @media (prefers-reduced-motion: reduce) { .ds-tag { transition: none; } }
 </style>
