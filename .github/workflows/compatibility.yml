@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npm run check
       - run: npm run check:consumer
@@ -40,6 +41,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npm run build
       - run: node scripts/test-webaseui-consumer.mjs --include-latest
@@ -56,6 +58,7 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npm install --no-save @playwright/test@latest
       - run: npx playwright install --with-deps chromium firefox webkit

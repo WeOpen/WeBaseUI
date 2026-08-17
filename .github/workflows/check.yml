@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npm run check:changeset
       - run: npm audit --audit-level=high
@@ -51,6 +52,7 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npx playwright install --with-deps ${{ matrix.browser }}
       - run: npm run test:browser:project -- --project=${{ matrix.browser }}
@@ -72,6 +74,7 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npx playwright install chromium
       - run: npm run test:visual

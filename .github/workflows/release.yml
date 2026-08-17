@@ -36,6 +36,7 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run check:changeset
@@ -57,6 +58,7 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
+      - run: npm install --global npm@11.5.1
       - run: npm ci
       - run: npx playwright install chromium
       - run: npm run test:visual
@@ -79,8 +81,8 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
-      - run: npm ci
       - run: npm install --global npm@11.5.1
+      - run: npm ci
       - id: release
         uses: changesets/action@52025003bf4794281597cb5b5e566485d9473389 # v1.5.0
         with:
@@ -112,8 +114,8 @@ jobs:
         with:
           node-version: 22.13
           cache: npm
-      - run: npm ci
       - run: npm install --global npm@11.5.1
+      - run: npm ci
       - run: node scripts/release-channel.mjs "${{ inputs.channel }}" --publish
         env:
           CI: true
