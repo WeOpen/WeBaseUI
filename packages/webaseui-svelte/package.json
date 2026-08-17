@@ -23,19 +23,22 @@
   "files": [
     "dist",
     "README.md",
+    "API_CONTRACT.md",
     "CHANGELOG.md",
-    "VERSIONING.md"
+    "VERSIONING.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "svelte-package",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "typecheck": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
     "@lucide/svelte": "^1.28.0",
     "@webaseui/core": "0.1.0"
   },
   "peerDependencies": {
-    "svelte": "^5.0.0"
+    "svelte": ">=5.20.0 <6"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.5.8",

@@ -23,19 +23,19 @@
   .ds-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    min-height: 24px;
-    padding: 3px 8px;
-    border: 1px solid currentColor;
-    border-radius: 999px;
+    gap: var(--webase-component-badge-gap);
+    min-height: var(--webase-component-badge-min-height);
+    padding: var(--webase-component-badge-padding-block) var(--webase-component-badge-padding-inline);
+    border: var(--webase-border-thin) solid currentColor;
+    border-radius: var(--webase-radius-pill);
     font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: .1em;
+    font-size: var(--webase-font-size-overline);
+    letter-spacing: var(--webase-letter-spacing-meta);
     line-height: 1;
     text-transform: uppercase;
   }
   .ds-badge-canonical { color: var(--brand); background: var(--brand-tint); }
   .ds-badge-one-off { color: var(--ink-muted); background: var(--surface-muted); }
   .ds-badge-experiment { color: var(--status-warning); background: var(--status-warning-field); }
-  i { display: block; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  i { display: block; width: var(--webase-component-badge-dot-size); height: var(--webase-component-badge-dot-size); border-radius: var(--webase-radius-circle); background: currentColor; }
 </style>

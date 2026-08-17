@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "platform": "darwin",
+  "packages": {
+    "core": {
+      "tarballBytes": 6412,
+      "unpackedBytes": 24054,
+      "css": {
+        "bytes": 18769,
+        "gzipBytes": 3914
+      }
+    },
+    "svelte": {
+      "tarballBytes": 40289,
+      "unpackedBytes": 174585,
+      "dist": {
+        "bytes": 150786,
+        "gzipBytes": 27176
+      },
+      "entry": {
+        "bytes": 7663,
+        "gzipBytes": 732
+      },
+      "components": {
+        "WeBaseAccordion": {
+          "bytes": 4217,
+          "gzipBytes": 1645
+        },
+        "WeBaseAlert": {
+          "bytes": 3874,
+          "gzipBytes": 1284
+        },
+        "WeBaseBadge": {
+          "bytes": 1846,
+          "gzipBytes": 836
+        },
+        "WeBaseBreadcrumbs": {
+          "bytes": 1911,
+          "gzipBytes": 874
+        },
+        "WeBaseButton": {
+          "bytes": 4013,
+          "gzipBytes": 1323
+        },
+        "WeBaseCard": {
+          "bytes": 5008,
+          "gzipBytes": 1619
+        },
+        "WeBaseCheck": {
+          "bytes": 2734,
+          "gzipBytes": 1043
+        },
+        "WeBaseDialog": {
+          "bytes": 5945,
+          "gzipBytes": 1917
+        },
+        "WeBaseDivider": {
+          "bytes": 1390,
+          "gzipBytes": 606
+        },
+        "WeBaseEmptyState": {
+          "bytes": 3623,
+          "gzipBytes": 1321
+        },
+        "WeBaseField": {
+          "bytes": 3703,
+          "gzipBytes": 1321
+        },
+        "WeBaseIcon": {
+          "bytes": 3473,
+          "gzipBytes": 1052
+        },
+        "WeBaseIconButton": {
+          "bytes": 2186,
+          "gzipBytes": 921
+        },
+        "WeBaseLink": {
+          "bytes": 3187,
+          "gzipBytes": 1156
+        },
+        "WeBaseLoader": {
+          "bytes": 1521,
+          "gzipBytes": 687
+        },
+        "WeBasePagination": {
+          "bytes": 3375,
+          "gzipBytes": 1299
+        },
+        "WeBaseProgress": {
+          "bytes": 1909,
+          "gzipBytes": 863
+        },
+        "WeBaseRadio": {
+          "bytes": 2479,
+          "gzipBytes": 958
+        },
+        "WeBaseSectionHeader": {
+          "bytes": 2311,
+          "gzipBytes": 963
+        },
+        "WeBaseSelect": {
+          "bytes": 15213,
+          "gzipBytes": 3842
+        },
+        "WeBaseSkeleton": {
+          "bytes": 2006,
+          "gzipBytes": 844
+        },
+        "WeBaseSlider": {
+          "bytes": 4217,
+          "gzipBytes": 1436
+        },
+        "WeBaseSwitch": {
+          "bytes": 2885,
+          "gzipBytes": 1004
+        },
+        "WeBaseTabs": {
+          "bytes": 3337,
+          "gzipBytes": 1366
+        },
+        "WeBaseTag": {
+          "bytes": 2865,
+          "gzipBytes": 1018
+        },
+        "WeBaseTextarea": {
+          "bytes": 3423,
+          "gzipBytes": 1305
+        },
+        "WeBaseToast": {
+          "bytes": 4164,
+          "gzipBytes": 1681
+        },
+        "WeBaseTooltip": {
+          "bytes": 5018,
+          "gzipBytes": 1664
+        }
+      }
+    }
+  },
+  "consumer": {
+    "jsBytes": 58027,
+    "jsGzipBytes": 21156,
+    "cssBytes": 24393,
+    "cssGzipBytes": 4754,
+    "htmlBytes": 409,
+    "htmlGzipBytes": 274,
+    "totalBytes": 82829,
+    "totalGzipBytes": 26184
+  }
+}

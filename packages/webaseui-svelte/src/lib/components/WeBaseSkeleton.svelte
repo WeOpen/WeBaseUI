@@ -15,13 +15,13 @@
 </div>
 
 <style>
-  .ds-skeleton { display: grid; grid-template-columns: 74px 1fr; gap: 16px; align-items: center; padding: 16px; border: 1px solid var(--hairline); background: var(--surface); }
+  .ds-skeleton { display: grid; grid-template-columns: var(--webase-component-skeleton-media-size) 1fr; gap: var(--webase-space-8); align-items: center; padding: var(--webase-space-8); border: var(--webase-border-thin) solid var(--hairline); background: var(--surface); }
   .ds-skeleton-media, .ds-skeleton-line { position: relative; display: block; overflow: hidden; background: var(--surface-muted); }
-  .ds-skeleton-media { width: 74px; height: 74px; }
-  .ds-skeleton-copy { display: grid; gap: 10px; }
-  .ds-skeleton-line { height: 10px; }
+  .ds-skeleton-media { width: var(--webase-component-skeleton-media-size); height: var(--webase-component-skeleton-media-size); }
+  .ds-skeleton-copy { display: grid; gap: var(--webase-space-5); }
+  .ds-skeleton-line { height: var(--webase-space-5); }
   .ds-skeleton-line.is-last { width: 62%; }
-  .ds-skeleton-media::after, .ds-skeleton-line::after { position: absolute; inset: 0; background: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--surface) 80%, transparent) 50%, transparent 80%); content: ''; transform: translateX(-100%); animation: ds-skeleton-shimmer 1.5s var(--ease-in-out) infinite; }
+  .ds-skeleton-media::after, .ds-skeleton-line::after { position: absolute; inset: 0; background: linear-gradient(var(--webase-component-skeleton-shimmer-angle), transparent 20%, color-mix(in srgb, var(--surface) 80%, transparent) 50%, transparent 80%); content: ''; transform: translateX(-100%); animation: ds-skeleton-shimmer var(--webase-component-skeleton-shimmer-duration) var(--ease-in-out) infinite; }
   @keyframes ds-skeleton-shimmer { to { transform: translateX(100%); } }
   @media (prefers-reduced-motion: reduce) { .ds-skeleton-media::after, .ds-skeleton-line::after { display: none; animation: none; } }
 </style>

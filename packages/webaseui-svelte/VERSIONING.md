@@ -24,7 +24,7 @@ The following are public API and require version review:
 - documented props, defaults, bindings, snippets, and root attribute behavior;
 - `--webase-*` CSS custom properties and theme selectors;
 - keyboard behavior, focus management, ARIA relationships, and live regions;
-- supported Svelte peer dependency ranges.
+- supported Svelte peer dependency ranges. The package currently requires Svelte 5.20 or newer because it uses the stable `$props.id()` rune.
 
 Internal component paths, `ds-*` implementation classes, private helpers, and
 undocumented markup structure are not public API.
@@ -41,3 +41,20 @@ undocumented markup structure are not public API.
 
 Accessibility fixes may adjust undocumented DOM structure in a patch release,
 but must preserve the documented interaction contract and pass browser tests.
+
+## Automated publication
+
+The `Release` GitHub Actions workflow is the only supported publication path.
+Its quality jobs run the complete package, consumer, browser, and visual gates
+before the Changesets action creates a release PR or publishes a merged release.
+The publish job grants `id-token: write`, upgrades npm to a trusted-publishing
+compatible version, and sets `NPM_CONFIG_PROVENANCE=true`; npm must be configured
+in advance to trust this repository and workflow for each package. No long-lived
+`NPM_TOKEN` is stored in GitHub secrets.
+
+After a stable publish, the workflow resolves both packages from the `latest`
+dist-tag and builds the registry consumer fixture. Manual `workflow_dispatch`
+runs can select `next` or `canary`; those runs enter Changesets pre-release mode,
+publish with the selected dist-tag, and run the same registry smoke test. Stable
+and pre-release tags are independent and are never overwritten by a local
+`npm publish` command.

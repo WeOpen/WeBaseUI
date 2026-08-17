@@ -32,39 +32,39 @@
     display: grid;
     grid-template-columns: 1fr minmax(0, 2fr);
     align-items: end;
-    column-gap: 32px;
-    margin-bottom: 34px;
+    column-gap: var(--webase-space-14);
+    margin-bottom: var(--webase-component-section-header-margin-bottom);
   }
 
   .ds-section-kicker {
     grid-column: 1 / -1;
-    margin: 0 0 12px;
+    margin: 0 0 var(--webase-space-6);
     color: var(--brand);
     font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: .14em;
+    font-size: var(--webase-font-size-overline);
+    letter-spacing: var(--webase-component-section-header-kicker-letter-spacing);
     text-transform: uppercase;
   }
 
   h2 {
     margin: 0;
     font-family: var(--font);
-    font-size: clamp(38px, 6vw, 72px);
+    font-size: clamp(var(--webase-component-section-header-title-min-size), var(--webase-component-section-header-title-fluid-size), var(--webase-component-section-header-title-max-size));
     font-weight: 500;
-    letter-spacing: -.06em;
+    letter-spacing: var(--webase-component-section-header-title-letter-spacing);
     line-height: .9;
   }
 
   .ds-section-note {
-    max-width: 280px;
+    max-width: var(--webase-component-section-header-note-max-width);
     margin: 0;
     color: var(--ink-muted);
-    font-size: 14px;
-    line-height: 1.45;
+    font-size: var(--webase-font-size-body);
+    line-height: var(--webase-line-height-body);
   }
 
   @media (max-width: 700px) {
     .ds-section-head { display: block; }
-    h2 { margin-bottom: 14px; }
+    h2 { margin-bottom: var(--webase-space-7); }
   }
 </style>

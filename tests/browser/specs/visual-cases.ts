@@ -1,0 +1,32 @@
+export const visualComponents = [
+  { name: 'WeBaseAccordion', slug: 'accordion' },
+  { name: 'WeBaseAlert', slug: 'alert' },
+  { name: 'WeBaseBadge', slug: 'badge' },
+  { name: 'WeBaseBreadcrumbs', slug: 'breadcrumbs' },
+  { name: 'WeBaseButton', slug: 'button' },
+  { name: 'WeBaseCard', slug: 'card' },
+  { name: 'WeBaseCheck', slug: 'check' },
+  { name: 'WeBaseDialog', slug: 'dialog' },
+  { name: 'WeBaseDivider', slug: 'divider' },
+  { name: 'WeBaseEmptyState', slug: 'emptystate' },
+  { name: 'WeBaseField', slug: 'field' },
+  { name: 'WeBaseIcon', slug: 'icon' },
+  { name: 'WeBaseIconButton', slug: 'iconbutton' },
+  { name: 'WeBaseLink', slug: 'link' },
+  { name: 'WeBaseLoader', slug: 'loader' },
+  { name: 'WeBasePagination', slug: 'pagination' },
+  { name: 'WeBaseProgress', slug: 'progress' },
+  { name: 'WeBaseRadio', slug: 'radio' },
+  { name: 'WeBaseSectionHeader', slug: 'sectionheader' },
+  { name: 'WeBaseSelect', slug: 'select' },
+  { name: 'WeBaseSkeleton', slug: 'skeleton' },
+  { name: 'WeBaseSlider', slug: 'slider' },
+  { name: 'WeBaseSwitch', slug: 'switch' },
+  { name: 'WeBaseTag', slug: 'tag' },
+  { name: 'WeBaseTabs', slug: 'tabs' },
+  { name: 'WeBaseTextarea', slug: 'textarea' },
+  { name: 'WeBaseToast', slug: 'toast' },
+  { name: 'WeBaseTooltip', slug: 'tooltip' }
+] as const;
+
+export type VisualComponent = (typeof visualComponents)[number];
