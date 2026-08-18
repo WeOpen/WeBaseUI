@@ -51,6 +51,11 @@ npm view @webaseui/svelte@VERSION dist.attestations --json
 npm run check:registry -- --tag=latest --require-provenance
 ```
 
+npm dist-tags and attestations can take a few seconds to become visible after
+publication. The registry smoke retries only those metadata lookups up to six
+times at five-second intervals. Package installation and consumer compilation
+are not retried; a failure there remains an immediate release failure.
+
 The metadata must include:
 
 ```json

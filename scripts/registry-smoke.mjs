@@ -2,6 +2,7 @@ import { cpSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, wri
 import { spawnSync } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
+import { hasSlsaProvenance, parseRegistryVersion, retryRegistryLookup } from './lib/registry.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const fixture = path.join(root, 'examples/webaseui-svelte-consumer');
@@ -20,31 +21,40 @@ function run(command, args, cwd = root) {
   return result.stdout.trim();
 }
 
-function registryVersion(packageName) {
-  const raw = run('npm', ['view', `${packageName}@${tag}`, 'version', '--json']);
-  const parsed = JSON.parse(raw);
-  const version = Array.isArray(parsed) ? parsed.at(-1) : parsed;
-  if (typeof version !== 'string' || version.length === 0) {
-    throw new Error(`Registry did not return a version for ${packageName}@${tag}`);
-  }
-  return version;
+function retryNotice(label) {
+  return ({ attempt, attempts, delayMs, error }) => {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`Registry lookup for ${label} failed (${attempt}/${attempts}): ${message}. Retrying in ${delayMs}ms.`);
+  };
 }
 
-function registryHasProvenance(packageName, version) {
-  const raw = run('npm', ['view', `${packageName}@${version}`, 'dist.attestations', '--json']);
-  const parsed = raw ? JSON.parse(raw) : null;
-  const metadata = Array.isArray(parsed) ? parsed.at(-1) : parsed;
-  return metadata?.provenance?.predicateType === 'https://slsa.dev/provenance/v1';
+async function registryVersion(packageName) {
+  const packageSpec = `${packageName}@${tag}`;
+  return retryRegistryLookup(
+    () => parseRegistryVersion(run('npm', ['view', packageSpec, 'version', '--json']), packageSpec),
+    { onRetry: retryNotice(packageSpec) }
+  );
+}
+
+async function assertRegistryProvenance(packageName, version) {
+  const packageSpec = `${packageName}@${version}`;
+  await retryRegistryLookup(
+    () => {
+      const raw = run('npm', ['view', packageSpec, 'dist.attestations', '--json']);
+      if (!hasSlsaProvenance(raw)) {
+        throw new Error(`Registry package ${packageSpec} has no SLSA provenance attestation.`);
+      }
+    },
+    { onRetry: retryNotice(`${packageSpec} provenance`) }
+  );
 }
 
 try {
-  const coreVersion = registryVersion('@webaseui/core');
-  const svelteVersion = registryVersion('@webaseui/svelte');
+  const coreVersion = await registryVersion('@webaseui/core');
+  const svelteVersion = await registryVersion('@webaseui/svelte');
   if (requireProvenance) {
     for (const [packageName, version] of [['@webaseui/core', coreVersion], ['@webaseui/svelte', svelteVersion]]) {
-      if (!registryHasProvenance(packageName, version)) {
-        throw new Error(`Registry package ${packageName}@${version} has no SLSA provenance attestation.`);
-      }
+      await assertRegistryProvenance(packageName, version);
     }
     console.log(`Registry provenance verified for @webaseui/core@${coreVersion} and @webaseui/svelte@${svelteVersion}.`);
   }
