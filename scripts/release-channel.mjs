@@ -20,13 +20,15 @@ run(['pre', 'enter', channel]);
 run(['version']);
 
 if (publish) {
-  const result = spawnSync('npx', ['changeset', 'publish', '--tag', channel], {
+  // Changesets reads the active prerelease tag from .changeset/pre.json.
+  // Passing --tag in pre mode is rejected and prevents trusted CI from publishing.
+  const result = spawnSync('npx', ['changeset', 'publish'], {
     cwd: root,
     encoding: 'utf8',
     stdio: 'inherit',
     env: { ...process.env, NPM_CONFIG_PROVENANCE: 'true', NPM_CONFIG_ACCESS: 'public' }
   });
-  if (result.status !== 0) throw new Error(`npx changeset publish --tag ${channel} failed`);
+  if (result.status !== 0) throw new Error(`npx changeset publish failed for prerelease channel ${channel}`);
 } else {
   console.log(`Prepared ${channel} pre-release versions. Review the versioned files, then publish from trusted CI with --publish.`);
 }
