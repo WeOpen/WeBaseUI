@@ -29,7 +29,7 @@
     WeBaseToast,
     WeBaseTooltip
   } from '@webaseui/svelte';
-  import type { ComponentName } from './reference';
+  import type { ComponentName } from './data/reference';
 
   interface Props {
     name: ComponentName;
@@ -43,8 +43,8 @@
     { title: 'Release gate', content: 'Cross-browser and accessibility checks run before publish.' }
   ];
   const breadcrumbItems = [
-    { label: 'Docs', href: '#top' },
-    { label: 'Components', href: '#components' },
+    { label: 'Docs', href: '/' },
+    { label: 'Components', href: '/components' },
     { label: 'Button' }
   ];
   const selectOptions = [
@@ -90,11 +90,12 @@
   {:else if name === 'WeBaseBreadcrumbs'}
     <WeBaseBreadcrumbs items={breadcrumbItems} />
   {:else if name === 'WeBaseButton'}
-    <div class="preview-row">
-      <WeBaseButton label="Save changes" variant="ink" icon="check" />
-      <WeBaseButton label="Open guide" variant="outline" icon="arrow-up-right" />
-      <WeBaseButton label="Add note" variant="quiet" icon="plus" />
-      <WeBaseButton label="Working" variant="text" loading />
+    <div class="button-specimen-grid">
+      <div><span>Primary</span><WeBaseButton label="Save changes" variant="ink" /></div>
+      <div><span>Outline</span><WeBaseButton label="Cancel" variant="outline" /></div>
+      <div><span>Disabled</span><WeBaseButton label="Not available" variant="outline" disabled /></div>
+      <div><span>Loading</span><WeBaseButton label="Saving..." loadingLabel="Saving..." variant="ink" loading /></div>
+      <div><span>Icon leading</span><WeBaseButton label="Download" variant="ink" icon="arrow-down" /></div>
     </div>
   {:else if name === 'WeBaseCard'}
     <div class="preview-card-width">
@@ -140,8 +141,8 @@
     </div>
   {:else if name === 'WeBaseLink'}
     <div class="preview-row">
-      <WeBaseLink href="#components" label="Component index" variant="back" />
-      <WeBaseLink href="#install" label="Install" variant="action" />
+      <WeBaseLink href="/components" label="Component index" variant="back" />
+      <WeBaseLink href="/#install" label="Install" variant="action" />
       <WeBaseLink href="https://github.com/WeOpen/WeBaseUI" label="Source" variant="inline" />
     </div>
   {:else if name === 'WeBaseLoader'}
@@ -174,7 +175,7 @@
     <div class="preview-row">
       <WeBaseTag label="Navigation" count="05" selected />
       <WeBaseTag label="Feedback" count="06" variant="brand" />
-      <WeBaseTag label="Overlay" href="#components" variant="outline" />
+      <WeBaseTag label="Overlay" href="/components" variant="outline" />
     </div>
   {:else if name === 'WeBaseTabs'}
     <WeBaseTabs items={['Contract', 'Behavior', 'Release']} panels={['Public props and bindings.', 'Documented interaction boundaries.', 'Versioned change policy.']} bind:active={tab} />
@@ -196,6 +197,9 @@
 <style>
   .component-preview { min-width: 0; }
   .preview-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .button-specimen-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px 18px; }
+  .button-specimen-grid > div { display: grid; gap: 9px; justify-items: start; }
+  .button-specimen-grid > div > span { color: var(--ink-muted); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
   .preview-stack { display: grid; gap: 16px; }
   .preview-card-width { width: min(520px, 100%); }
   .preview-field-width { width: min(460px, 100%); }
@@ -205,7 +209,14 @@
   .icon-shelf > span { display: grid; min-height: 92px; place-items: center; align-content: center; gap: 10px; border: 1px solid var(--hairline); color: var(--brand); background: color-mix(in srgb, var(--brand-tint) 26%, var(--surface)); }
   .icon-shelf small { color: var(--ink-muted); font-family: var(--mono); font-size: 9px; }
 
+  @media (max-width: 1100px) and (min-width: 681px) {
+    .button-specimen-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
   @media (max-width: 680px) {
+    .button-specimen-grid { grid-template-columns: 1fr; }
+    .button-specimen-grid > div { justify-items: stretch; text-align: center; }
+    .button-specimen-grid > div :global(.ds-button) { width: 100%; justify-content: center; }
     .icon-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .icon-shelf > span:last-child { grid-column: 1 / -1; }
   }

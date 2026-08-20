@@ -1,5 +1,5 @@
-import contractSource from '../../../../packages/webaseui-svelte/API_CONTRACT.md?raw';
-import packageSource from '../../../../packages/webaseui-svelte/package.json?raw';
+import contractSource from '../../../../../packages/webaseui-svelte/API_CONTRACT.md?raw';
+import packageSource from '../../../../../packages/webaseui-svelte/package.json?raw';
 import { inlineParts, parseFields, type ParsedContractField } from './reference-utils.js';
 
 export { inlineParts, parseFields } from './reference-utils.js';
@@ -89,7 +89,7 @@ const usageExamples: Record<ComponentName, string> = {
   WeBaseSkeleton: `<WeBaseSkeleton rows={3} media />`,
   WeBaseSlider: `<WeBaseSlider label="Density" bind:value />`,
   WeBaseSwitch: `<WeBaseSwitch label="Dark theme" bind:checked />`,
-  WeBaseTag: `<WeBaseTag label="Navigation" href="#components" count="05" />`,
+  WeBaseTag: `<WeBaseTag label="Navigation" href="/components" count="05" />`,
   WeBaseTabs: `<WeBaseTabs items={labels} panels={content} bind:active />`,
   WeBaseTextarea: `<WeBaseTextarea label="Notes" bind:value />`,
   WeBaseToast: `<WeBaseToast bind:open title="Saved locally" />`,

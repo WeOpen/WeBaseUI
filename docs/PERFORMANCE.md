@@ -26,6 +26,24 @@ source sizes explain what changed inside the published artifacts.
 
 ## Reviewed baseline changes
 
+### 2026-08-20: expand the public icon vocabulary
+
+`WeBaseIcon` now exposes 14 additional Lucide names used by the routed
+documentation experience, including navigation, theme, contract, copy, and
+release-status symbols. The component keeps an explicit static icon map so the
+public name union and runtime lookup stay aligned; consumers that render
+`WeBaseIcon` therefore include the expanded vocabulary.
+
+| Metric | Previous | Current | Change |
+| --- | ---: | ---: | ---: |
+| `WeBaseIcon` source gzip | 1,052 B | 1,357 B | +305 B (+29.0%) |
+| Consumer JS gzip | 21,156 B | 22,262 B | +1,106 B (+5.2%) |
+| Consumer total gzip | 26,184 B | 27,292 B | +1,108 B (+4.2%) |
+| Svelte tarball | 40,289 B | 41,277 B | +988 B (+2.5%) |
+
+The icon vocabulary is a deliberate public API expansion and is covered by a
+patch changeset. The package-size gate continues from this reviewed baseline.
+
 ### 2026-08-16: publish the core changelog
 
 `@webaseui/core` now ships an initial `CHANGELOG.md` and includes it in its

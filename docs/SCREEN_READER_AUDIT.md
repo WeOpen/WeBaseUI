@@ -36,10 +36,13 @@ role, value or state, and focus destination.
 Copy this table for each candidate. `Blocked` requires a linked P0/P1 decision;
 an RC cannot pass with a blocked required environment.
 
+The candidate packages prepared for this audit are `@webaseui/core@0.2.0-next.0`
+and `@webaseui/svelte@0.4.0-next.0`.
+
 | Candidate | Environment | Versions | Tester and date | Result | Issues |
 | --- | --- | --- | --- | --- | --- |
-| Unscheduled | VoiceOver / Safari | Not recorded | Not run | Pending | None |
-| Unscheduled | NVDA / Firefox or Chrome | Not recorded | Not run | Pending | None |
+| core@0.2.0-next.0 + svelte@0.4.0-next.0 | VoiceOver / Safari | macOS 26.5.2; Safari 26.5.2; VoiceOver 10 | Pending human test | Pending | None |
+| core@0.2.0-next.0 + svelte@0.4.0-next.0 | NVDA / Firefox or Chrome | Windows, browser, and NVDA versions to record | Pending human test | Pending | None |
 
 ## Sign-off rules
 
