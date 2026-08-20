@@ -15,7 +15,7 @@ async function openSpecimen(page: Page, component: VisualComponent, theme: 'ligh
   await page.addInitScript((selectedTheme) => {
     localStorage.setItem('webaseui-theme', selectedTheme);
   }, theme);
-  await page.goto(`${docsUrl}/#component-${component.slug}`);
+  await page.goto(`${docsUrl}/components/${component.slug}`);
   await page.addStyleTag({
     content: `
       body::before { display: none !important; }

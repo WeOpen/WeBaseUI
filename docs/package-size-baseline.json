@@ -3,19 +3,19 @@
   "platform": "darwin",
   "packages": {
     "core": {
-      "tarballBytes": 6412,
-      "unpackedBytes": 24054,
+      "tarballBytes": 6648,
+      "unpackedBytes": 24541,
       "css": {
         "bytes": 18769,
         "gzipBytes": 3914
       }
     },
     "svelte": {
-      "tarballBytes": 40289,
-      "unpackedBytes": 174585,
+      "tarballBytes": 41277,
+      "unpackedBytes": 177147,
       "dist": {
-        "bytes": 150786,
-        "gzipBytes": 27176
+        "bytes": 152383,
+        "gzipBytes": 27622
       },
       "entry": {
         "bytes": 7663,
@@ -67,8 +67,8 @@
           "gzipBytes": 1321
         },
         "WeBaseIcon": {
-          "bytes": 3473,
-          "gzipBytes": 1052
+          "bytes": 4767,
+          "gzipBytes": 1357
         },
         "WeBaseIconButton": {
           "bytes": 2186,
@@ -119,8 +119,8 @@
           "gzipBytes": 1366
         },
         "WeBaseTag": {
-          "bytes": 2865,
-          "gzipBytes": 1018
+          "bytes": 3002,
+          "gzipBytes": 1068
         },
         "WeBaseTextarea": {
           "bytes": 3423,
@@ -138,13 +138,13 @@
     }
   },
   "consumer": {
-    "jsBytes": 58027,
-    "jsGzipBytes": 21156,
+    "jsBytes": 62656,
+    "jsGzipBytes": 22262,
     "cssBytes": 24393,
     "cssGzipBytes": 4754,
     "htmlBytes": 409,
-    "htmlGzipBytes": 274,
-    "totalBytes": 82829,
-    "totalGzipBytes": 26184
+    "htmlGzipBytes": 276,
+    "totalBytes": 87458,
+    "totalGzipBytes": 27292
   }
 }

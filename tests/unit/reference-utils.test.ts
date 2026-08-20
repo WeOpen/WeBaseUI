@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { inlineParts, parseFields } from '../../apps/docs/src/lib/reference-utils.js';
+import { inlineParts, parseFields } from '../../apps/docs/src/lib/data/reference-utils.js';
 
 describe('parseFields', () => {
   it('parses named fields and joins indented continuation lines', () => {
