@@ -3,8 +3,8 @@
   "platform": "darwin",
   "packages": {
     "core": {
-      "tarballBytes": 6648,
-      "unpackedBytes": 24541,
+      "tarballBytes": 7277,
+      "unpackedBytes": 26031,
       "css": {
         "bytes": 18769,
         "gzipBytes": 3914
